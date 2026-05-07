@@ -12,6 +12,7 @@ dependencies = [
     "django-auditlog==3.4.1",
     "django-interval==0.5.4",
     "psycopg[binary]~=3.0",
+    "mysqlclient>=2.2.8",
 ]
 
 [build-system]
