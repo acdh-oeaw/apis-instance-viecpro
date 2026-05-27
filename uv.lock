@@ -146,7 +146,7 @@ requires-dist = [
     { name = "django-auditlog", specifier = "==3.4.1" },
     { name = "django-interval", specifier = "==0.5.4" },
     { name = "mysqlclient", specifier = ">=2.2.8" },
-    { name = "psycopg", extras = ["binary"], specifier = "~=3.0" },
+    { name = "psycopg", extras = ["binary"], specifier = "~=3.3" },
 ]
 
 [package.metadata.requires-dev]
