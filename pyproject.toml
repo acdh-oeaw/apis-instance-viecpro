@@ -11,7 +11,7 @@ dependencies = [
     "apis-acdhch-default-settings==2.20.0",
     "django-auditlog==3.4.1",
     "django-interval==0.5.4",
-    "psycopg[binary]~=3.0",
+    "psycopg[binary]~=3.3",
     "mysqlclient>=2.2.8",
 ]
 
