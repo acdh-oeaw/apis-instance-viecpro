@@ -7,6 +7,7 @@ INSTALLED_APPS[INSTALLED_APPS.index("apis_ontology")] = "apis_instance_viecpro"
 INSTALLED_APPS += ["simple_history"]
 INSTALLED_APPS += ["django.contrib.postgres"]
 INSTALLED_APPS += ["django_interval"]
+INSTALLED_APPS += ["apis_bibsonomy"]
 
 ROOT_URLCONF = "apis_instance_viecpro.urls"
 
