@@ -13,6 +13,7 @@ dependencies = [
     "django-interval==0.5.4",
     "psycopg[binary]~=3.0",
     "mysqlclient>=2.2.8",
+    "apis-bibsonomy>=0.14.0",
 ]
 
 [build-system]
