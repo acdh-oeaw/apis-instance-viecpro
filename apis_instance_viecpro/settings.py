@@ -13,6 +13,16 @@ ROOT_URLCONF = "apis_instance_viecpro.urls"
 
 LANGUAGE_CODE = "de"
 
+APIS_BIBSONOMY = [
+    {
+        "type": "zotero",
+        "url": "https://api.zotero.org",
+        "user": os.environ.get("APIS_BIBSONOMY_USER"),
+        "API key": os.environ.get("APIS_BIBSONOMY_API_KEY"),
+        "group": os.environ.get("APIS_BIBSONOMY_GROUP"),
+    }
+]
+
 if db_url := os.environ.get("OLD_DATABASE_URL", False):
     print("Connecting to OLD_DATABASE_URL")
     DATABASES["old"] = dj_database_url.parse(db_url)
