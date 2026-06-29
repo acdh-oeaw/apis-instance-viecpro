@@ -26,3 +26,7 @@ APIS_BIBSONOMY = [
 if db_url := os.environ.get("OLD_DATABASE_URL", False):
     print("Connecting to OLD_DATABASE_URL")
     DATABASES["old"] = dj_database_url.parse(db_url)
+
+
+DATABASES["default"]["DISABLE_SERVER_SIDE_CURSORS"] = True
+DATABASES["old"]["DISABLE_SERVER_SIDE_CURSORS"] = True
