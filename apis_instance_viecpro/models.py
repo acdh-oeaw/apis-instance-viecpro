@@ -1,12 +1,11 @@
-from django.db import models
-from apis_core.entities.abc import E53_Place, E21_Person, E74_Group
+from apis_core.entities.abc import E21_Person, E53_Place, E74_Group, Entity
+from apis_core.generic.abc import GenericModel
 from apis_core.history.models import VersionMixin
 from apis_core.relations.models import Relation
-from apis_core.entities.abc import Entity
-from apis_core.generic.abc import GenericModel
-from django_interval.fields import FuzzyDateParserField
 from django.contrib.contenttypes.fields import GenericForeignKey
 from django.contrib.contenttypes.models import ContentType
+from django.db import models
+from django_interval.fields import FuzzyDateParserField
 
 
 class Ampel(GenericModel):
