@@ -24,3 +24,6 @@ build-backend = "hatchling.build"
 dev = [
     "ruff~=0.16",
 ]
+
+[tool.ruff]
+lint.ignore = ["RUF012"]
