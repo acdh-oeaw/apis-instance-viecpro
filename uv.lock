@@ -86,19 +86,17 @@ wheels = [
 
 [[package]]
 name = "apis-bibsonomy"
-version = "0.14.0"
+version = "0.15.2"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "django" },
-    { name = "django-autocomplete-light" },
     { name = "django-crispy-forms" },
     { name = "djangorestframework" },
     { name = "httpx" },
-    { name = "requests" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/e6/0f/913d01c7cafa21da796d8fe4a9bf987f4f8ac6e11afdd0daba755fb8d12b/apis_bibsonomy-0.14.0.tar.gz", hash = "sha256:ff8611778c27c044971eb0867b47e91a0fb6d92f5dc2114f67f65bb1a823147d", size = 39899, upload-time = "2026-06-19T05:22:41.222Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/e7/39/4f129c0d92c972369bf5054511963f9c0597df9393c656aa130eeef42845/apis_bibsonomy-0.15.2.tar.gz", hash = "sha256:816b4f5c27f791a7f2a4e7b05795178cebcdca52cdc6a13b4e54fd2a18852b0c", size = 36561, upload-time = "2026-08-13T09:23:39.838Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/9a/8b/bbdb9e876c07506a766baf52175c8d388fb2c2b06783b8825702eadb3ea2/apis_bibsonomy-0.14.0-py3-none-any.whl", hash = "sha256:81fe86cce1769b2e7ceb190fc60cf917ed82305c2c1bd5271b8d821c0b36e006", size = 21035, upload-time = "2026-06-19T05:22:39.994Z" },
+    { url = "https://files.pythonhosted.org/packages/5a/74/1d3acc2d9e95866db6c5068a487777975b86e7feb4e61cee1025245cba25/apis_bibsonomy-0.15.2-py3-none-any.whl", hash = "sha256:d820aa9bb1feef2de9595f3080f7eee88a4fff7a1968f41bc132d25844af43cd", size = 23347, upload-time = "2026-08-13T09:23:38.873Z" },
 ]
 
 [[package]]
@@ -151,7 +149,7 @@ dev = [
 [package.metadata]
 requires-dist = [
     { name = "apis-acdhch-default-settings", specifier = "==2.20.0" },
-    { name = "apis-bibsonomy", specifier = ">=0.14.0" },
+    { name = "apis-bibsonomy", specifier = ">=0.15.2" },
     { name = "apis-core-rdf", specifier = "==0.67.2" },
     { name = "django-auditlog", specifier = "==3.4.1" },
     { name = "django-interval", specifier = "==0.5.4" },
