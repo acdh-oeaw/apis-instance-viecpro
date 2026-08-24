@@ -86,7 +86,7 @@ wheels = [
 
 [[package]]
 name = "apis-bibsonomy"
-version = "0.15.2"
+version = "0.15.3"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "django" },
@@ -94,9 +94,9 @@ dependencies = [
     { name = "djangorestframework" },
     { name = "httpx" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/e7/39/4f129c0d92c972369bf5054511963f9c0597df9393c656aa130eeef42845/apis_bibsonomy-0.15.2.tar.gz", hash = "sha256:816b4f5c27f791a7f2a4e7b05795178cebcdca52cdc6a13b4e54fd2a18852b0c", size = 36561, upload-time = "2026-08-13T09:23:39.838Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/c7/f5/e0b6840e75a2404c0c1b05f79d7df65ac5c51f168232e8779e16d4fb3156/apis_bibsonomy-0.15.3.tar.gz", hash = "sha256:e78d5af9859aae58c53ce0c1ccb4a6c970b37219b7da95e2482749c251e2a318", size = 36693, upload-time = "2026-08-20T05:36:21.873Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/5a/74/1d3acc2d9e95866db6c5068a487777975b86e7feb4e61cee1025245cba25/apis_bibsonomy-0.15.2-py3-none-any.whl", hash = "sha256:d820aa9bb1feef2de9595f3080f7eee88a4fff7a1968f41bc132d25844af43cd", size = 23347, upload-time = "2026-08-13T09:23:38.873Z" },
+    { url = "https://files.pythonhosted.org/packages/5e/17/9bee2520a0aa7e0c9adb732e393aaa9f75ecb42960964576a384ab9748e3/apis_bibsonomy-0.15.3-py3-none-any.whl", hash = "sha256:8aa25609ac91bdc76945c524dac444a7b12ab06c45a7e77c37ed995d83d5cc47", size = 23394, upload-time = "2026-08-20T05:36:20.764Z" },
 ]
 
 [[package]]
