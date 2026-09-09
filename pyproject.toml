@@ -14,6 +14,7 @@ dependencies = [
     "psycopg[binary]~=3.3",
     "mysqlclient>=2.2.8",
     "apis-bibsonomy>=0.15.2",
+    "django-grouper>=0.4.0",
 ]
 
 [build-system]
