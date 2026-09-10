@@ -1,5 +1,5 @@
 from apis_core.entities.abc import E21_Person, E53_Place, E74_Group, Entity
-from apis_core.generic.abc import GenericModel
+from apis_core.generic.abc import GenericModel, SimpleLabelModel
 from apis_core.history.models import VersionMixin
 from apis_core.relations.models import Relation
 from django.contrib.contenttypes.fields import GenericForeignKey
@@ -37,6 +37,12 @@ class Source(GenericModel):
         )
 
 
+class Profession(SimpleLabelModel): ...
+
+
+class Title(SimpleLabelModel): ...
+
+
 class Person(VersionMixin, E21_Person):
     """
     Person class, imported from old viecpro instance
@@ -54,6 +60,9 @@ class Person(VersionMixin, E21_Person):
     references = models.TextField(blank=True, null=True)
     notes = models.TextField(blank=True, null=True)
     published = models.BooleanField(default=False)
+
+    title = models.ManyToManyField(Title, blank=True)
+    professions = models.ManyToManyField(Profession, blank=True)
 
     # imported from texts with types `diverses`, `ereignisdatum` & `quellenzitat`
     diverses = models.TextField()
