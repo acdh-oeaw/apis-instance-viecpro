@@ -8,6 +8,7 @@ INSTALLED_APPS += ["simple_history"]
 INSTALLED_APPS += ["django.contrib.postgres"]
 INSTALLED_APPS += ["django_interval"]
 INSTALLED_APPS += ["apis_bibsonomy"]
+INSTALLED_APPS += ["django_grouper"]
 
 ROOT_URLCONF = "apis_instance_viecpro.urls"
 
