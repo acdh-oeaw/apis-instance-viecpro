@@ -1,0 +1,8 @@
+{% extends "generic/genericmodel_list.html" %}
+
+{% block filter-card-footer %}
+{{ block.super }}
+
+<a class="btn" href="{% url "grouper" %}?{{ request.GET.urlencode }}&group_fields=surname&group_fields=forename&group_content_type=apis_instance_viecpro.person">Duplicates</a>
+
+{% endblock filter-card-footer %}
