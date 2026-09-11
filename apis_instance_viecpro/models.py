@@ -48,8 +48,7 @@ class Person(VersionMixin, E21_Person):
     Person class, imported from old viecpro instance
     Decided to drop the `status` field
     `start` & `end` will become `date_of_birth` and `date_of_death`
-    Decided to replace the pointers to texts with types `diverses`, `ereignisdatum` & `quellenzitat`
-    with attributes on the model
+    Decided to replace the pointers to texts with a JSON field containing the texts
     Decided to replace pointers to labels with `labels` JSON field
     Decided to replace pointer to "data merged from" relation with `merged_into` field
     """
@@ -64,16 +63,30 @@ class Person(VersionMixin, E21_Person):
     title = models.ManyToManyField(Title, blank=True)
     professions = models.ManyToManyField(Profession, blank=True)
 
-    # imported from texts with types `diverses`, `ereignisdatum` & `quellenzitat`
-    diverses = models.TextField()
-    ereignisdatum = models.TextField()
-    quellenzitat = models.TextField()
+    texts = models.JSONField(null=True)
 
     # imported from pointers to labels
     labels = models.JSONField(null=True)
 
     # imported from "data merged from" relation
-    merged_into = models.IntegerField(editable=False, null=True)
+    merged_into = models.ForeignKey(
+        "Person",
+        on_delete=models.PROTECT,
+        editable=False,
+        null=True,
+        related_name="merged",
+    )
+    # for the django-grouper logic
+    grouped_into = models.ForeignKey(
+        "Person",
+        on_delete=models.PROTECT,
+        editable=False,
+        null=True,
+        related_name="grouped",
+    )
+
+    # helper attribute, to know what the old entity was
+    legacy_metainfo_id = models.IntegerField(editable=False, null=True)
 
 
 class Institution(VersionMixin, E74_Group):
@@ -91,6 +104,12 @@ class Institution(VersionMixin, E74_Group):
     references = models.TextField(blank=True, null=True)
     notes = models.TextField(blank=True, null=True)
     published = models.BooleanField(default=False)
+
+    # imported from pointers to labels
+    labels = models.JSONField(null=True)
+
+    # helper attribute, to know what the old entity was
+    legacy_metainfo_id = models.IntegerField(editable=False, null=True)
 
 
 class Event(VersionMixin, Entity):
@@ -110,6 +129,12 @@ class Event(VersionMixin, Entity):
     references = models.TextField(blank=True, null=True)
     notes = models.TextField(blank=True, null=True)
     published = models.BooleanField(default=False)
+
+    # imported from pointers to labels
+    labels = models.JSONField(null=True)
+
+    # helper attribute, to know what the old entity was
+    legacy_metainfo_id = models.IntegerField(editable=False, null=True)
 
     def __str__(self):
         return self.name
@@ -131,6 +156,12 @@ class Place(VersionMixin, E53_Place):
     references = models.TextField(blank=True, null=True)
     notes = models.TextField(blank=True, null=True)
     published = models.BooleanField(default=False)
+
+    # imported from pointers to labels
+    labels = models.JSONField(null=True)
+
+    # helper attribute, to know what the old entity was
+    legacy_metainfo_id = models.IntegerField(editable=False, null=True)
 
 
 class Payment(VersionMixin, Entity): ...
