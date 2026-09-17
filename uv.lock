@@ -138,6 +138,7 @@ dependencies = [
     { name = "django-auditlog" },
     { name = "django-grouper" },
     { name = "django-interval" },
+    { name = "django-json-editor-field" },
     { name = "mysqlclient" },
     { name = "psycopg", extra = ["binary"] },
 ]
@@ -155,6 +156,7 @@ requires-dist = [
     { name = "django-auditlog", specifier = "==3.4.1" },
     { name = "django-grouper", specifier = ">=0.4.0" },
     { name = "django-interval", specifier = "==0.5.4" },
+    { name = "django-json-editor-field", specifier = ">=0.4.2" },
     { name = "mysqlclient", specifier = ">=2.2.8" },
     { name = "psycopg", extras = ["binary"], specifier = "~=3.3" },
 ]
@@ -425,6 +427,19 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/4d/17/1889bc174f307dec4937927900cb9939c696ba8f348d896ff94088aa06d4/django_interval-0.5.4.tar.gz", hash = "sha256:0a09f7a1848391c88ac4ecadce8cdf11b91f69e121b1bf5e4df0f5c4295e3e13", size = 13144, upload-time = "2026-02-12T06:12:05.59Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/0f/a3/8c75dacb363bd3a2b58a456e5384ce87402581c0f4891866e16ad5f512a8/django_interval-0.5.4-py3-none-any.whl", hash = "sha256:92add069c1de8c6dce905913ac6630c9601d13b648fbce7fc8ffec79d4762395", size = 11774, upload-time = "2026-02-12T06:12:04.102Z" },
+]
+
+[[package]]
+name = "django-json-editor-field"
+version = "0.4.2"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "django" },
+    { name = "jsonschema" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/8d/c8/ed0f8d83eacb2dcdffb1b459da511eb3d52e26737291a236f5d5f892ff7c/django_json_editor_field-0.4.2.tar.gz", hash = "sha256:5fc03d649fc652b81a461ba84486113373e4a79b9cec7897e42c4ba0d23cadc3", size = 4355, upload-time = "2025-02-06T09:07:42.705Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/6e/b4/580de3389bb9e31abc89e4ef22f128316c216e3abb5014176c8aa9f099e5/django_json_editor_field-0.4.2-py3-none-any.whl", hash = "sha256:d6b4c39b682338baaf0c7cec6fb661b049a82bef195d30745677045606d9226d", size = 4439, upload-time = "2025-02-06T09:07:40.925Z" },
 ]
 
 [[package]]
