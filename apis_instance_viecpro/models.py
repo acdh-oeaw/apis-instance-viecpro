@@ -6,6 +6,7 @@ from django.contrib.contenttypes.fields import GenericForeignKey
 from django.contrib.contenttypes.models import ContentType
 from django.db import models
 from django_interval.fields import FuzzyDateParserField
+from django_json_editor_field.fields import JSONEditorField
 
 
 class Ampel(GenericModel):
@@ -63,10 +64,78 @@ class Person(VersionMixin, E21_Person):
     title = models.ManyToManyField(Title, blank=True)
     professions = models.ManyToManyField(Profession, blank=True)
 
-    texts = models.JSONField(null=True)
+    jsonfield_options = {
+        "theme": "bootstrap4",
+        "disable_collapse": True,
+        "disable_edit_json": True,
+        "disable_properties": True,
+        "disable_array_reorder": True,
+        "disable_array_delete_last_row": True,
+        "disable_array_delete_all_rows": True,
+        "prompt_before_delete": False,
+    }
+    texts_schema = {
+        "title": "Texts",
+        "type": "array",
+        "format": "table",
+        "items": {
+            "type": "object",
+            "properties": {
+                "text-type": {
+                    "type": "string",
+                    "pattern": "^.+$",
+                    "options": {
+                        "inputAttributes": {
+                            "required": True,
+                        },
+                    },
+                },
+                "text": {
+                    "type": "string",
+                    "pattern": "^.+$",
+                    "options": {
+                        "inputAttributes": {
+                            "required": True,
+                        },
+                    },
+                },
+            },
+        },
+    }
+
+    texts = JSONEditorField(schema=texts_schema, options=jsonfield_options, null=True)
+
+    labels_schema = {
+        "title": "Labels",
+        "type": "array",
+        "format": "table",
+        "items": {
+            "type": "object",
+            "properties": {
+                "label-type": {
+                    "type": "string",
+                    "pattern": "^.+$",
+                    "options": {
+                        "inputAttributes": {
+                            "required": True,
+                        },
+                    },
+                },
+                "label": {
+                    "type": "string",
+                    "pattern": "^.+$",
+                    "options": {
+                        "inputAttributes": {
+                            "required": True,
+                        },
+                    },
+                },
+            },
+        },
+    }
 
     # imported from pointers to labels
-    labels = models.JSONField(null=True)
+    labels = JSONEditorField(schema=labels_schema, options=jsonfield_options, null=True)
 
     # imported from "data merged from" relation
     merged_into = models.ForeignKey(
