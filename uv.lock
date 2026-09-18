@@ -101,7 +101,7 @@ wheels = [
 
 [[package]]
 name = "apis-core-rdf"
-version = "0.67.4"
+version = "0.69.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "acdh-arche-assets" },
@@ -117,14 +117,15 @@ dependencies = [
     { name = "djangorestframework" },
     { name = "drf-spectacular" },
     { name = "httpx" },
+    { name = "psycopg", extra = ["binary"] },
     { name = "pydantic" },
     { name = "pydot" },
     { name = "rdflib" },
     { name = "tablib" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/74/5c/847bca744477b8f8807c9cf1b23dba890c45fc8c067f5253caa0f7680ea2/apis_core_rdf-0.67.4.tar.gz", hash = "sha256:a24804bcfe6317231e130860ac4377a44e2f59e8db54a6fdc6a06162c1b8792d", size = 335754, upload-time = "2026-08-21T08:54:36.621Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/c8/ba/3a14f21acd841f5ab77807eaf25dfb8b9130226a093cb3e6321828512471/apis_core_rdf-0.69.0.tar.gz", hash = "sha256:51831f308a860bdbee9c335db2cd3cb1b71a0b8ea92023fdfe2d3ac76f1f2bdc", size = 347954, upload-time = "2026-09-14T10:57:21.243Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/93/7d/99cc7a4a8f3b254a8a5ba7da9774f407cc472040cfcc15c6bd555638da08/apis_core_rdf-0.67.4-py3-none-any.whl", hash = "sha256:c33b11c01c0e08886acbc6058b4b4b6f6512f3bea59a771b400097920375c262", size = 301816, upload-time = "2026-08-21T08:54:35.122Z" },
+    { url = "https://files.pythonhosted.org/packages/b6/5f/9d5a3df829af733714def653959b95bcd58bf08d55b2f4f8fc754c53f3b0/apis_core_rdf-0.69.0-py3-none-any.whl", hash = "sha256:6be098bef541c8985e27a62b0387af2a3655607d12d5853c60e7b601eb6f132d", size = 315155, upload-time = "2026-09-14T10:57:19.756Z" },
 ]
 
 [[package]]
@@ -151,7 +152,7 @@ dev = [
 requires-dist = [
     { name = "apis-acdhch-default-settings", specifier = "==2.20.0" },
     { name = "apis-bibsonomy", specifier = ">=0.15.2" },
-    { name = "apis-core-rdf", specifier = "==0.67.4" },
+    { name = "apis-core-rdf", specifier = "==0.69.0" },
     { name = "django-auditlog", specifier = "==3.4.1" },
     { name = "django-grouper", specifier = ">=0.4.0" },
     { name = "django-interval", specifier = "==0.5.4" },
