@@ -405,15 +405,15 @@ wheels = [
 
 [[package]]
 name = "django-grouper"
-version = "0.4.0"
+version = "0.5.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "django" },
     { name = "scikit-learn" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/d8/d9/38f1b045a652142c948a9d12f5e8dbdebd2d218628889c37fee3b4da8ccc/django_grouper-0.4.0.tar.gz", hash = "sha256:b57401edd03d4acca4366432c213a612fdd187e94275e8603d59c1da8a12a5a5", size = 8104, upload-time = "2026-02-06T09:37:59.494Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/02/c3/b5862b5cebdcb85545f8343de2938e8f8ca6775da9a6e9061811f54dc9d5/django_grouper-0.5.0.tar.gz", hash = "sha256:e4aa10c09f5498a94414e6c0d0dbf2d0bffaf007f21d24143e082d9de1a6cd03", size = 8808, upload-time = "2026-09-11T05:41:11.226Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/68/99/a1f56dd0b788c8a03dbaf60bff90ae2651e040a0df768290bb46015a3af5/django_grouper-0.4.0-py2.py3-none-any.whl", hash = "sha256:b49c032506bd647feda302726bd588c23a08c79fcd5683228235b0098568309f", size = 7760, upload-time = "2026-02-06T09:37:58.026Z" },
+    { url = "https://files.pythonhosted.org/packages/d1/2c/09765f3572506ae0d1fe501689c08e9dd4db9f25acac0d1cb26684e78213/django_grouper-0.5.0-py2.py3-none-any.whl", hash = "sha256:9837b11eb824a61bd8af7d4b444ae99782a2a218682d3d24e1495f4cf3cc0982", size = 8451, upload-time = "2026-09-11T05:41:09.962Z" },
 ]
 
 [[package]]
