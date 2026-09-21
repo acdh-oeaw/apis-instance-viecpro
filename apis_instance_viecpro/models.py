@@ -8,6 +8,19 @@ from django.db import models
 from django_interval.fields import FuzzyDateParserField
 from django_json_editor_field.fields import JSONEditorField
 
+# The default options for JSONEditorFields, which are used
+# in multiple models
+jsoneditorfield_options = {
+    "theme": "bootstrap4",
+    "disable_collapse": True,
+    "disable_edit_json": True,
+    "disable_properties": True,
+    "disable_array_reorder": True,
+    "disable_array_delete_last_row": True,
+    "disable_array_delete_all_rows": True,
+    "prompt_before_delete": False,
+}
+
 
 class Ampel(GenericModel):
     status = models.CharField(max_length=300)
@@ -64,16 +77,6 @@ class Person(VersionMixin, E21_Person):
     title = models.ManyToManyField(Title, blank=True)
     professions = models.ManyToManyField(Profession, blank=True)
 
-    jsonfield_options = {
-        "theme": "bootstrap4",
-        "disable_collapse": True,
-        "disable_edit_json": True,
-        "disable_properties": True,
-        "disable_array_reorder": True,
-        "disable_array_delete_last_row": True,
-        "disable_array_delete_all_rows": True,
-        "prompt_before_delete": False,
-    }
     texts_schema = {
         "title": "Texts",
         "type": "array",
@@ -103,7 +106,9 @@ class Person(VersionMixin, E21_Person):
         },
     }
 
-    texts = JSONEditorField(schema=texts_schema, options=jsonfield_options, null=True)
+    texts = JSONEditorField(
+        schema=texts_schema, options=jsoneditorfield_options, null=True
+    )
 
     labels_schema = {
         "title": "Labels",
@@ -135,7 +140,9 @@ class Person(VersionMixin, E21_Person):
     }
 
     # imported from pointers to labels
-    labels = JSONEditorField(schema=labels_schema, options=jsonfield_options, null=True)
+    labels = JSONEditorField(
+        schema=labels_schema, options=jsoneditorfield_options, null=True
+    )
 
     # imported from "data merged from" relation
     merged_into = models.ForeignKey(
@@ -174,8 +181,39 @@ class Institution(VersionMixin, E74_Group):
     notes = models.TextField(blank=True, null=True)
     published = models.BooleanField(default=False)
 
+    labels_schema = {
+        "title": "Labels",
+        "type": "array",
+        "format": "table",
+        "items": {
+            "type": "object",
+            "properties": {
+                "label-type": {
+                    "type": "string",
+                    "pattern": "^.+$",
+                    "options": {
+                        "inputAttributes": {
+                            "required": True,
+                        },
+                    },
+                },
+                "label": {
+                    "type": "string",
+                    "pattern": "^.+$",
+                    "options": {
+                        "inputAttributes": {
+                            "required": True,
+                        },
+                    },
+                },
+            },
+        },
+    }
+
     # imported from pointers to labels
-    labels = models.JSONField(null=True)
+    labels = JSONEditorField(
+        schema=labels_schema, options=jsoneditorfield_options, null=True
+    )
 
     # helper attribute, to know what the old entity was
     legacy_metainfo_id = models.IntegerField(editable=False, null=True)
@@ -199,8 +237,39 @@ class Event(VersionMixin, Entity):
     notes = models.TextField(blank=True, null=True)
     published = models.BooleanField(default=False)
 
+    labels_schema = {
+        "title": "Labels",
+        "type": "array",
+        "format": "table",
+        "items": {
+            "type": "object",
+            "properties": {
+                "label-type": {
+                    "type": "string",
+                    "pattern": "^.+$",
+                    "options": {
+                        "inputAttributes": {
+                            "required": True,
+                        },
+                    },
+                },
+                "label": {
+                    "type": "string",
+                    "pattern": "^.+$",
+                    "options": {
+                        "inputAttributes": {
+                            "required": True,
+                        },
+                    },
+                },
+            },
+        },
+    }
+
     # imported from pointers to labels
-    labels = models.JSONField(null=True)
+    labels = JSONEditorField(
+        schema=labels_schema, options=jsoneditorfield_options, null=True
+    )
 
     # helper attribute, to know what the old entity was
     legacy_metainfo_id = models.IntegerField(editable=False, null=True)
@@ -226,8 +295,39 @@ class Place(VersionMixin, E53_Place):
     notes = models.TextField(blank=True, null=True)
     published = models.BooleanField(default=False)
 
+    labels_schema = {
+        "title": "Labels",
+        "type": "array",
+        "format": "table",
+        "items": {
+            "type": "object",
+            "properties": {
+                "label-type": {
+                    "type": "string",
+                    "pattern": "^.+$",
+                    "options": {
+                        "inputAttributes": {
+                            "required": True,
+                        },
+                    },
+                },
+                "label": {
+                    "type": "string",
+                    "pattern": "^.+$",
+                    "options": {
+                        "inputAttributes": {
+                            "required": True,
+                        },
+                    },
+                },
+            },
+        },
+    }
+
     # imported from pointers to labels
-    labels = models.JSONField(null=True)
+    labels = JSONEditorField(
+        schema=labels_schema, options=jsoneditorfield_options, null=True
+    )
 
     # helper attribute, to know what the old entity was
     legacy_metainfo_id = models.IntegerField(editable=False, null=True)
