@@ -1,10 +1,15 @@
+from copy import deepcopy
+
+from apis_bibsonomy.models import Reference
+from apis_core.collections.models import SkosCollection
 from apis_core.entities.abc import E21_Person, E53_Place, E74_Group, Entity
 from apis_core.generic.abc import GenericModel, SimpleLabelModel
 from apis_core.history.models import VersionMixin
 from apis_core.relations.models import Relation
 from django.contrib.contenttypes.fields import GenericForeignKey
 from django.contrib.contenttypes.models import ContentType
-from django.db import models
+from django.db import models, transaction
+from django.template.loader import render_to_string
 from django_interval.fields import FuzzyDateParserField
 from django_json_editor_field.fields import JSONEditorField
 
@@ -163,6 +168,82 @@ class Person(VersionMixin, E21_Person):
 
     # helper attribute, to know what the old entity was
     legacy_metainfo_id = models.IntegerField(editable=False, null=True)
+
+    def djg_merge_preview(self):
+        return render_to_string(
+            "apis_instance_viecpro/djg_person_merge_preview.html", {"object": self}
+        )
+
+    @transaction.atomic
+    def djg_merge(self, others):
+        new_pers = deepcopy(self)
+        new_pers.pk = None
+        new_pers.id = None
+        new_pers._state.adding = True
+        new_pers.save()
+        for m2m in ["professions", "title"]:
+            m2m_objcts = getattr(self, m2m).all()
+            if m2m_objcts.count() > 0:
+                getattr(new_pers, m2m).add(*m2m_objcts)
+        col, _ = SkosCollection.objects.get_or_create(name="Vorfinale Einträge")
+        col.add(new_pers)
+
+        save = False
+        for field in ["notes", "references"]:
+            for person in others:
+                if getattr(person, field) and len(getattr(person, field)) > 0:
+                    add_value = f"\n--\n{person.id}: {getattr(person, field)}"
+                    orig_value = getattr(new_pers, field) or ""
+                    setattr(new_pers, field, orig_value + add_value)
+                    save = True
+        for person in others:
+            if person.labels:
+                new_pers.labels += person.labels
+                save = True
+            if person.texts:
+                new_pers.texts += person.texts
+                save = True
+            for profession in person.professions.all():
+                new_pers.professions.add(profession)
+            for title in person.title.all():
+                new_pers.title.add(title)
+        if save:
+            new_pers.save()
+
+        pers_ids = [pers.id for pers in others + [self]]
+        subj_relations = Relation.objects.filter(
+            subj_content_type=self.get_self_content_type, subj_object_id__in=pers_ids
+        ).select_subclasses()
+        for rel in subj_relations:
+            rel.pk = rel.id = None
+            rel.subj_object_id = new_pers.pk
+            rel._state.adding = True
+            rel.save()
+        obj_relations = Relation.objects.filter(
+            obj_content_type=self.get_self_content_type, obj_object_id__in=pers_ids
+        ).select_subclasses()
+        for rel in obj_relations:
+            rel.pk = rel.id = None
+            rel.obj_object_id = new_pers.pk
+            rel._state.adding = True
+            rel.save()
+
+        for ref in Reference.objects.filter(
+            content_type=self.get_self_content_type, object_id__in=pers_ids
+        ):
+            ref.pk = ref.id = None
+            ref._state.adding = True
+            ref.object_id = new_pers.pk
+            ref.save()
+
+        for person in others + [self]:
+            person.grouped_into = new_pers
+            person.save()
+
+        coldub, _ = SkosCollection.objects.get_or_create(name="Dubletten")
+        for person in others + [self]:
+            coldub.add(person)
+        return new_pers.get_absolute_url()
 
 
 class Institution(VersionMixin, E74_Group):

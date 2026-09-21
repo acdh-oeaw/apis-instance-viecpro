@@ -1,0 +1,21 @@
+{% load relations %}
+<div class='name'>{{object}}</div>
+<div class="dates">
+{% if object.date_of_birth %}
+{{ object.date_of_birth }}
+{% if object.date_of_death %}-{% endif %}
+{% endif %}
+{% if object.date_of_death %}{{ object.date_of_death }}{% endif %}
+</div>
+<div class="notes">{% if object.notes %}{{ object.notes }}{% endif %}</div>
+<div class="references">{% if object.references %}{{ object.references }}{% endif %}</div>
+<div class="relations">
+{% relations_from object as relations %}
+{% if relations %}
+<ul>
+{% for relation in relations %}
+<li>{{ relation }}</li>
+{% endfor %}
+</ul>
+{% endif %}
+</div>
