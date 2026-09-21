@@ -30,3 +30,20 @@ if db_url := os.environ.get("OLD_DATABASE_URL", ""):
     DATABASES["old"] = dj_database_url.parse(db_url)
 
 ADDITIONAL_MODULE_LOOKUP_PATHS = ["apis_instance_viecpro"]
+
+
+def custom_group_filter(queryset, request):
+    from apis_core.generic.filtersets import GenericFilterSet
+    from apis_core.generic.helpers import first_member_match, module_paths
+    from django_filters.filterset import filterset_factory
+
+    filterset_modules = module_paths(
+        queryset.model, path="filtersets", suffix="FilterSet"
+    )
+    filterset_class = first_member_match(filterset_modules, GenericFilterSet)
+    filterset = filterset_factory(queryset.model, filterset_class)
+    filtered_data = filterset(request.GET, queryset=queryset, prefix="filterset").qs
+    return filtered_data
+
+
+GROUP_FILTER = custom_group_filter
