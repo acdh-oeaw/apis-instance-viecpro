@@ -68,8 +68,8 @@ class Person(VersionMixin, E21_Person):
     """
 
     review = models.BooleanField(default=False)
-    date_of_birth = FuzzyDateParserField(null=True)
-    date_of_death = FuzzyDateParserField(null=True)
+    date_of_birth = FuzzyDateParserField(blank=True, null=True)
+    date_of_death = FuzzyDateParserField(blank=True, null=True)
     references = models.TextField(blank=True, null=True)
     notes = models.TextField(blank=True, null=True)
     published = models.BooleanField(default=False)
@@ -156,8 +156,8 @@ class Person(VersionMixin, E21_Person):
     grouped_into = models.ForeignKey(
         "Person",
         on_delete=models.PROTECT,
-        editable=False,
         null=True,
+        blank=True,
         related_name="grouped",
     )
 
