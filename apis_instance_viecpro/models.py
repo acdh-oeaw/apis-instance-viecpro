@@ -441,7 +441,6 @@ class LegacyRelation(VersionMixin, Relation):
     class Meta:
         abstract = True
 
-    label = models.CharField(max_length=255, blank=True, null=True)
     start = FuzzyDateParserField(max_length=255, blank=True, null=True)
     end = FuzzyDateParserField(max_length=255, blank=True, null=True)
     status = models.CharField(max_length=100, blank=True, null=True, editable=False)
