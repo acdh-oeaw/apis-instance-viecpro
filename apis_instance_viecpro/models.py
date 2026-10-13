@@ -446,12 +446,17 @@ class LegacyRelation(VersionMixin, Relation):
     status = models.CharField(max_length=100, blank=True, null=True, editable=False)
     references = models.TextField(blank=True, null=True)
     notes = models.TextField(blank=True, null=True)
-    legacy_relation_vocab_label = models.CharField(
-        max_length=255, blank=True, null=True
-    )
-    legacy_relation_vocab_label_reverse = models.CharField(
-        max_length=255, blank=True, null=True
-    )
+
+
+class LegacyRelationType(VersionMixin):
+    class Meta:
+        abstract = True
+
+    label = models.CharField(max_length=255, blank=True, null=True)
+    label_reverse = models.CharField(max_length=255, blank=True, null=True)
+
+
+class InstitutionInstitutionRelationType(LegacyRelationType): ...
 
 
 class InstitutionInstitutionRelation(LegacyRelation):
@@ -459,17 +464,38 @@ class InstitutionInstitutionRelation(LegacyRelation):
     subj_model = Institution
     obj_model = Institution
 
+    type = models.ForeignKey(
+        InstitutionInstitutionRelationType, models.DO_NOTHING, blank=True, null=True
+    )
+
+
+class InstitutionPlaceRelationType(LegacyRelationType): ...
+
 
 class InstitutionPlaceRelation(LegacyRelation):
     # 903 ApisRelationsInstitutionplace
     subj_model = Institution
     obj_model = Place
 
+    type = models.ForeignKey(
+        InstitutionPlaceRelationType, models.DO_NOTHING, blank=True, null=True
+    )
+
+
+class PersonEventRelationType(LegacyRelationType): ...
+
 
 class PersonEventRelation(LegacyRelation):
     # 80 ApisRelationsPersonevent
     subj_model = Person
     obj_model = Event
+
+    type = models.ForeignKey(
+        PersonEventRelationType, models.DO_NOTHING, blank=True, null=True
+    )
+
+
+class PersonInstitutionRelationType(LegacyRelationType): ...
 
 
 class PersonInstitutionRelation(LegacyRelation):
@@ -479,11 +505,25 @@ class PersonInstitutionRelation(LegacyRelation):
     subj_model = Person
     obj_model = Institution
 
+    type = models.ForeignKey(
+        PersonInstitutionRelationType, models.DO_NOTHING, blank=True, null=True
+    )
+
+
+class PersonPersonRelationType(LegacyRelationType): ...
+
 
 class PersonPersonRelation(LegacyRelation):
     # 21811 ApisRelationsPersonperson
     subj_model = Person
     obj_model = Person
+
+    type = models.ForeignKey(
+        PersonPersonRelationType, models.DO_NOTHING, blank=True, null=True
+    )
+
+
+class PersonPlaceRelationType(LegacyRelationType): ...
 
 
 class PersonPlaceRelation(LegacyRelation):
@@ -491,17 +531,35 @@ class PersonPlaceRelation(LegacyRelation):
     subj_model = Person
     obj_model = Place
 
+    type = models.ForeignKey(
+        PersonPlaceRelationType, models.DO_NOTHING, blank=True, null=True
+    )
+
+
+class PlaceEventRelationType(LegacyRelationType): ...
+
 
 class PlaceEventRelation(LegacyRelation):
     # 14 ApisRelationsPlaceevent
     subj_model = Place
     obj_model = Event
 
+    type = models.ForeignKey(
+        PlaceEventRelationType, models.DO_NOTHING, blank=True, null=True
+    )
+
+
+class PlacePlaceRelationType(LegacyRelationType): ...
+
 
 class PlacePlaceRelation(LegacyRelation):
     # 3045 ApisRelationsPlaceplace
     subj_model = Place
     obj_model = Place
+
+    type = models.ForeignKey(
+        PlacePlaceRelationType, models.DO_NOTHING, blank=True, null=True
+    )
 
 
 # Relationen
