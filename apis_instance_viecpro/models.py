@@ -573,10 +573,11 @@ class PlacePlaceRelation(LegacyRelation):
 #    obj_model = Person
 
 
-class HasFunction(LegacyRelation):
-    subj_model = Person
-    obj_model = Institution
-
-    legacy_relation_vocab_label = None
-    legacy_relation_vocab_label_reverse = None
-    type = models.ForeignKey(FunctionType, on_delete=models.PROTECT)
+# decided to not use this after all
+# class HasFunction(LegacyRelation):
+#    subj_model = Person
+#    obj_model = Institution
+#
+#    legacy_relation_vocab_label = None
+#    legacy_relation_vocab_label_reverse = None
+#    type = models.ForeignKey(FunctionType, on_delete=models.PROTECT)
