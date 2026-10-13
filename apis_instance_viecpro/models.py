@@ -72,7 +72,6 @@ class Person(VersionMixin, E21_Person):
     Decided to replace pointer to "data merged from" relation with `merged_into` field
     """
 
-    review = models.BooleanField(default=False)
     date_of_birth = FuzzyDateParserField(blank=True, null=True)
     date_of_death = FuzzyDateParserField(blank=True, null=True)
     references = models.TextField(blank=True, null=True)
@@ -254,7 +253,6 @@ class Institution(VersionMixin, E74_Group):
 
     type = models.CharField(max_length=255, null=True)
 
-    review = models.BooleanField(default=False)
     start = FuzzyDateParserField(null=True)
     end = FuzzyDateParserField(null=True)
     status = models.CharField(max_length=100, null=True)
@@ -310,7 +308,6 @@ class Event(VersionMixin, Entity):
     type = models.CharField(null=True)
 
     name = models.CharField(max_length=255, null=True)
-    review = models.BooleanField(default=False)
     start = FuzzyDateParserField(null=True)
     end = FuzzyDateParserField(null=True)
     status = models.CharField(max_length=100, null=True)
@@ -367,7 +364,6 @@ class Place(VersionMixin, E53_Place):
     that probably have to be mapped to `feature_code` at some point
     """
 
-    review = models.BooleanField(default=False)
     kind = models.CharField(max_length=100, null=True)
     start = FuzzyDateParserField(null=True)
     end = FuzzyDateParserField(null=True)
@@ -448,7 +444,6 @@ class LegacyRelation(VersionMixin, Relation):
     label = models.CharField(max_length=255, blank=True, null=True)
     start = FuzzyDateParserField(max_length=255, blank=True, null=True)
     end = FuzzyDateParserField(max_length=255, blank=True, null=True)
-    review = models.BooleanField(default=False, editable=False)
     status = models.CharField(max_length=100, blank=True, null=True, editable=False)
     references = models.TextField(blank=True, null=True)
     notes = models.TextField(blank=True, null=True)
