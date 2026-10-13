@@ -413,23 +413,23 @@ class Place(VersionMixin, E53_Place):
 class Payment(VersionMixin, Entity): ...
 
 
-class FunctionTopic(VersionMixin, GenericModel):
-    label = models.CharField()
-    definition = models.TextField()
-    source = models.TextField()
-
-    def __str__(self):
-        return self.label or "Unlabelled FunctionTopic"
-
-
-class FunctionType(VersionMixin, GenericModel):
-    label = models.CharField()
-    topic = models.ForeignKey(FunctionTopic, on_delete=models.PROTECT, null=True)
-    alternative_labels = models.JSONField(null=True)
-    comment = models.TextField(null=True)
-
-    def __str__(self):
-        return self.label or "Unlabelled FunctionType"
+# class FunctionTopic(VersionMixin, GenericModel):
+#    label = models.CharField()
+#    definition = models.TextField()
+#    source = models.TextField()
+#
+#    def __str__(self):
+#        return self.label or "Unlabelled FunctionTopic"
+#
+#
+# class FunctionType(VersionMixin, GenericModel):
+#    label = models.CharField()
+#    topic = models.ForeignKey(FunctionTopic, on_delete=models.PROTECT, null=True)
+#    alternative_labels = models.JSONField(null=True)
+#    comment = models.TextField(null=True)
+#
+#    def __str__(self):
+#        return self.label or "Unlabelled FunctionType"
 
 
 #############
