@@ -31,8 +31,8 @@ class Ampel(GenericModel):
     status = models.CharField(max_length=300)
     note = models.TextField(blank=True, null=True)
 
-    content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE, null=True)
-    object_id = models.PositiveIntegerField(null=True)
+    content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE, null=True, db_index=True)
+    object_id = models.PositiveIntegerField(null=True, db_index=True)
     content_object = GenericForeignKey("content_type", "object_id")
 
     def __str__(self):
