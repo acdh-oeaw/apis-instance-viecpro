@@ -1,5 +1,5 @@
 import django_tables2 as tables
-from apis_core.generic.tables import CustomTemplateColumn
+from apis_core.generic.tables import CustomTemplateColumn, GenericTable
 from apis_core.relations.tables import RelationsListTable
 
 
@@ -15,3 +15,7 @@ class EntityRelationsTable(RelationsListTable):
 
     class Meta(RelationsListTable.Meta):
         sequence = RelationsListTable.Meta.sequence + ("reference",)
+
+
+class PersonTable(GenericTable):
+    ampel_value = tables.TemplateColumn(template_name="columns/ampel.html")
