@@ -11,7 +11,6 @@ class EntityRelationsTable(RelationsListTable):
     reference = ReferenceColumn()
     start = tables.Column(order_by="start_date_sort")
     end = tables.Column(order_by="end_date_sort")
-    label = tables.Column(accessor="legacy_relation_vocab_label")
     notes = tables.Column()
 
     class Meta(RelationsListTable.Meta):
