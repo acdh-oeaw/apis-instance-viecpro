@@ -448,7 +448,7 @@ class LegacyRelation(VersionMixin, Relation):
     notes = models.TextField(blank=True, null=True)
 
 
-class LegacyRelationType(VersionMixin):
+class LegacyRelationType(VersionMixin, GenericModel):
     class Meta:
         abstract = True
 
