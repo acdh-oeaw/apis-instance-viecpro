@@ -31,7 +31,9 @@ class Ampel(GenericModel):
     status = models.CharField(max_length=300)
     note = models.TextField(blank=True, null=True)
 
-    content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE, null=True, db_index=True)
+    content_type = models.ForeignKey(
+        ContentType, on_delete=models.CASCADE, null=True, db_index=True
+    )
     object_id = models.PositiveIntegerField(null=True, db_index=True)
     content_object = GenericForeignKey("content_type", "object_id")
 
@@ -62,6 +64,19 @@ class Profession(SimpleLabelModel): ...
 class Title(SimpleLabelModel): ...
 
 
+class PersonManager(models.Manager):
+    def get_queryset(self):
+        qs = super().get_queryset()
+        content_type = ContentType.objects.get_for_model(qs.model)
+        return qs.annotate(
+            ampel_value=models.Subquery(
+                Ampel.objects.filter(
+                    content_type=content_type, object_id=models.OuterRef("pk")
+                ).values("status")
+            )
+        )
+
+
 class Person(VersionMixin, E21_Person):
     """
     Person class, imported from old viecpro instance
@@ -80,6 +95,8 @@ class Person(VersionMixin, E21_Person):
 
     title = models.ManyToManyField(Title, blank=True)
     professions = models.ManyToManyField(Profession, blank=True)
+
+    objects = PersonManager()
 
     texts_schema = {
         "title": "Texts",
