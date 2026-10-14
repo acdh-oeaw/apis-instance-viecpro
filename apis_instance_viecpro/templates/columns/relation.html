@@ -1,0 +1,5 @@
+{% if record.forward %}
+{{ record.type.label }} <a href="{{ record.obj.get_absolute_url }}">{{ record.obj }}</a>
+{% else %}
+{{ record.type.label_reverse }} <a href="{{ record.subj.get_absolute_url }}">{{ record.subj }}</a>
+{% endif %}
