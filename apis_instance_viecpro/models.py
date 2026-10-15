@@ -279,12 +279,12 @@ class Institution(VersionMixin, E74_Group):
     """
 
     institution_type = models.ForeignKey(
-        InstitutionType, on_delete=models.PROTECT, null=True
+        InstitutionType, on_delete=models.PROTECT, blank=True, null=True
     )
 
     start = FuzzyDateParserField(null=True, blank=True, parser=parse_date_wrapper)
     end = FuzzyDateParserField(null=True, blank=True, parser=parse_date_wrapper)
-    status = models.CharField(max_length=100, null=True)
+    status = models.CharField(max_length=100, null=True, blank=True)
     references = models.TextField(blank=True, null=True)
     notes = models.TextField(blank=True, null=True)
     published = models.BooleanField(default=False)
@@ -338,12 +338,14 @@ class Event(VersionMixin, Entity):
     it should be a choicefield in the form afterwards
     """
 
-    event_type = models.ForeignKey(EventType, on_delete=models.PROTECT, null=True)
+    event_type = models.ForeignKey(
+        EventType, on_delete=models.PROTECT, null=True, blank=True
+    )
 
     name = models.CharField(max_length=255, null=True)
     start = FuzzyDateParserField(null=True, blank=True, parser=parse_date_wrapper)
     end = FuzzyDateParserField(null=True, blank=True, parser=parse_date_wrapper)
-    status = models.CharField(max_length=100, null=True)
+    status = models.CharField(max_length=100, null=True, blank=True)
     references = models.TextField(blank=True, null=True)
     notes = models.TextField(blank=True, null=True)
     published = models.BooleanField(default=False)
@@ -397,10 +399,10 @@ class Place(VersionMixin, E53_Place):
     that probably have to be mapped to `feature_code` at some point
     """
 
-    kind = models.CharField(max_length=100, null=True)
+    kind = models.CharField(max_length=100, null=True, blank=True)
     start = FuzzyDateParserField(null=True, blank=True, parser=parse_date_wrapper)
     end = FuzzyDateParserField(null=True, blank=True, parser=parse_date_wrapper)
-    status = models.CharField(max_length=100, null=True)
+    status = models.CharField(max_length=100, null=True, blank=True)
     references = models.TextField(blank=True, null=True)
     notes = models.TextField(blank=True, null=True)
     published = models.BooleanField(default=False)
