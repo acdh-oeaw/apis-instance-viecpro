@@ -282,8 +282,8 @@ class Institution(VersionMixin, E74_Group):
         InstitutionType, on_delete=models.PROTECT, null=True
     )
 
-    start = FuzzyDateParserField(null=True, parser=parse_date_wrapper)
-    end = FuzzyDateParserField(null=True, parser=parse_date_wrapper)
+    start = FuzzyDateParserField(null=True, blank=True, parser=parse_date_wrapper)
+    end = FuzzyDateParserField(null=True, blank=True, parser=parse_date_wrapper)
     status = models.CharField(max_length=100, null=True)
     references = models.TextField(blank=True, null=True)
     notes = models.TextField(blank=True, null=True)
@@ -341,8 +341,8 @@ class Event(VersionMixin, Entity):
     event_type = models.ForeignKey(EventType, on_delete=models.PROTECT, null=True)
 
     name = models.CharField(max_length=255, null=True)
-    start = FuzzyDateParserField(null=True, parser=parse_date_wrapper)
-    end = FuzzyDateParserField(null=True, parser=parse_date_wrapper)
+    start = FuzzyDateParserField(null=True, blank=True, parser=parse_date_wrapper)
+    end = FuzzyDateParserField(null=True, blank=True, parser=parse_date_wrapper)
     status = models.CharField(max_length=100, null=True)
     references = models.TextField(blank=True, null=True)
     notes = models.TextField(blank=True, null=True)
@@ -398,8 +398,8 @@ class Place(VersionMixin, E53_Place):
     """
 
     kind = models.CharField(max_length=100, null=True)
-    start = FuzzyDateParserField(null=True, parser=parse_date_wrapper)
-    end = FuzzyDateParserField(null=True, parser=parse_date_wrapper)
+    start = FuzzyDateParserField(null=True, blank=True, parser=parse_date_wrapper)
+    end = FuzzyDateParserField(null=True, blank=True, parser=parse_date_wrapper)
     status = models.CharField(max_length=100, null=True)
     references = models.TextField(blank=True, null=True)
     notes = models.TextField(blank=True, null=True)
