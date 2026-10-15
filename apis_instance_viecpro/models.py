@@ -262,13 +262,19 @@ class Person(VersionMixin, E21_Person):
         return new_pers.get_absolute_url()
 
 
+class InstitutionType(SimpleLabelModel):
+    legacy_vocab_id = models.IntegerField(null=True, editable=False)
+
+
 class Institution(VersionMixin, E74_Group):
     """
     Institution class, imported from old viecpro instance `ApisEntitiesInstitution`
     `name` will become `label`
     """
 
-    type = models.CharField(max_length=255, null=True)
+    institution_type = models.ForeignKey(
+        InstitutionType, on_delete=models.PROTECT, null=True
+    )
 
     start = FuzzyDateParserField(null=True)
     end = FuzzyDateParserField(null=True)
@@ -315,6 +321,10 @@ class Institution(VersionMixin, E74_Group):
     legacy_metainfo_id = models.IntegerField(editable=False, null=True)
 
 
+class EventType(SimpleLabelModel):
+    legacy_vocab_id = models.IntegerField(null=True, editable=False)
+
+
 class Event(VersionMixin, Entity):
     """
     Event class, imported from old viecpro instance `ApisEntitiesEvent`
@@ -322,7 +332,7 @@ class Event(VersionMixin, Entity):
     it should be a choicefield in the form afterwards
     """
 
-    type = models.CharField(null=True)
+    event_type = models.ForeignKey(EventType, on_delete=models.PROTECT, null=True)
 
     name = models.CharField(max_length=255, null=True)
     start = FuzzyDateParserField(null=True)
