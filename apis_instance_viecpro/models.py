@@ -138,7 +138,7 @@ class Person(VersionMixin, E21_Person):
         "items": {
             "type": "object",
             "properties": {
-                "label-type": {
+                "type": {
                     "type": "string",
                     "pattern": "^.+$",
                     "options": {
@@ -284,7 +284,7 @@ class Institution(VersionMixin, E74_Group):
         "items": {
             "type": "object",
             "properties": {
-                "label-type": {
+                "type": {
                     "type": "string",
                     "pattern": "^.+$",
                     "options": {
@@ -339,7 +339,7 @@ class Event(VersionMixin, Entity):
         "items": {
             "type": "object",
             "properties": {
-                "label-type": {
+                "type": {
                     "type": "string",
                     "pattern": "^.+$",
                     "options": {
@@ -396,7 +396,7 @@ class Place(VersionMixin, E53_Place):
         "items": {
             "type": "object",
             "properties": {
-                "label-type": {
+                "type": {
                     "type": "string",
                     "pattern": "^.+$",
                     "options": {
