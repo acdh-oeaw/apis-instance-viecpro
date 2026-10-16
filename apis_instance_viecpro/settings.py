@@ -43,7 +43,7 @@ def custom_group_filter(queryset, request):
     filterset_class = first_member_match(filterset_modules, GenericFilterSet)
     filterset = filterset_factory(queryset.model, filterset_class)
     filtered_data = filterset(request.GET, queryset=queryset, prefix="filterset").qs
-    return filtered_data
+    return filtered_data.filter(grouped_into__isnull=True)
 
 
 GROUP_FILTER = custom_group_filter
