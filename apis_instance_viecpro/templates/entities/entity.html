@@ -1,6 +1,10 @@
 {% extends "entities/entity.html" %}
 {% load bibsonomy_templatetags %}
+{% load apis_instance_viecpro %}
 
 {% block object-actions %}
 {% link_to_reference_on obj=object modal=True %}
+<span class="ampel-container">
+{% get_ampel_for_object object %}
+</span>
 {% endblock object-actions %}
