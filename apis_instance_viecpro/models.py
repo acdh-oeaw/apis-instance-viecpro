@@ -30,7 +30,12 @@ jsoneditorfield_options = {
 
 
 class Ampel(GenericModel):
-    status = models.CharField(max_length=300)
+    STATUS_CHOICES = [
+        ("red", "red"),
+        ("yellow", "yellow"),
+        ("green", "green"),
+    ]
+    status = models.CharField(max_length=300, choices=STATUS_CHOICES)
     note = models.TextField(blank=True, null=True)
 
     content_type = models.ForeignKey(
