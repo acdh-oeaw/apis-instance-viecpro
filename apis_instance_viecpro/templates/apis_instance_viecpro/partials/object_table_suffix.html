@@ -1,4 +1,6 @@
-<tr>
-  <th>Ampel</th>
-  <td>{% include "ampel_icon.html" with color=object.ampel_value %}</td>
-</tr>
+{% if object.ampel_value %}
+    <tr>
+        <th>Ampel</th>
+        <td>{% include "ampel_icon.html" with color=object.ampel_value %}</td>
+    </tr>
+{% endif %}
