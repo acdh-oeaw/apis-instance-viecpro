@@ -44,6 +44,13 @@ class Ampel(GenericModel):
     object_id = models.PositiveIntegerField(null=True, db_index=True)
     content_object = GenericForeignKey("content_type", "object_id")
 
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(
+                fields=("content_type", "object_id"), name="unique_content_object"
+            )
+        ]
+
     def __str__(self):
         return f"{self.content_object} -> {self.status}"
 
