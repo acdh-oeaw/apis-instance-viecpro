@@ -4,9 +4,3 @@
         <td>{% for obj in object.grouped.all %}<a href="{{ obj.get_absolute_url }}">{{ obj }}</a> {% endfor %}</td>
     </tr>
 {% endif %}
-{% if object.ampel_value %}
-    <tr>
-        <th>Ampel</th>
-        <td>{% include "ampel_icon.html" with color=object.ampel_value %}</td>
-    </tr>
-{% endif %}
