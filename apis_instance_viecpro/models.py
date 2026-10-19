@@ -511,6 +511,7 @@ class LegacyRelationType(VersionMixin, GenericModel):
 
     label = models.CharField(max_length=255, blank=True, null=True)
     label_reverse = models.CharField(max_length=255, blank=True, null=True)
+    legacy_vocab_id = models.IntegerField(null=True, editable=False)
 
     def __str__(self):
         return f"{self.label} <-> {self.label_reverse}"
