@@ -583,7 +583,7 @@ class PersonPersonRelation(LegacyRelation):
     obj_model = Person
 
     type = models.ForeignKey(
-        PersonPersonRelationType, models.DO_NOTHING, blank=True, null=True
+        PersonPersonRelationType, models.SET_NULL, blank=True, null=True
     )
 
 
@@ -596,7 +596,7 @@ class PersonPlaceRelation(LegacyRelation):
     obj_model = Place
 
     type = models.ForeignKey(
-        PersonPlaceRelationType, models.DO_NOTHING, blank=True, null=True
+        PersonPlaceRelationType, models.SET_NULL, blank=True, null=True
     )
 
 
@@ -609,7 +609,7 @@ class PlaceEventRelation(LegacyRelation):
     obj_model = Event
 
     type = models.ForeignKey(
-        PlaceEventRelationType, models.DO_NOTHING, blank=True, null=True
+        PlaceEventRelationType, models.SET_NULL, blank=True, null=True
     )
 
 
