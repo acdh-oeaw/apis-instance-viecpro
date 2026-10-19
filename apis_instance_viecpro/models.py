@@ -403,6 +403,10 @@ class Event(VersionMixin, Entity):
         return self.name
 
 
+class PlaceType(SimpleLabelModel):
+    legacy_vocab_id = models.IntegerField(null=True, editable=False)
+
+
 class Place(VersionMixin, E53_Place):
     """
     Place class, imported from old viecrpo instance `ApisEntitiesPlace`
@@ -411,7 +415,9 @@ class Place(VersionMixin, E53_Place):
     that probably have to be mapped to `feature_code` at some point
     """
 
-    kind = models.CharField(max_length=100, null=True, blank=True)
+    place_type = models.ForeignKey(
+        PlaceType, on_delete=models.PROTECT, null=True, blank=True
+    )
     start = FuzzyDateParserField(null=True, blank=True, parser=parse_date_wrapper)
     end = FuzzyDateParserField(null=True, blank=True, parser=parse_date_wrapper)
     status = models.CharField(max_length=100, null=True, blank=True)
