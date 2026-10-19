@@ -517,7 +517,8 @@ class LegacyRelationType(VersionMixin, GenericModel):
         return f"{self.label} <-> {self.label_reverse}"
 
 
-class InstitutionInstitutionRelationType(LegacyRelationType): ...
+class InstitutionInstitutionRelationType(LegacyRelationType):
+    parent = models.ForeignKey("self", models.DO_NOTHING, blank=True, null=True)
 
 
 class InstitutionInstitutionRelation(LegacyRelation):
@@ -556,7 +557,8 @@ class PersonEventRelation(LegacyRelation):
     )
 
 
-class PersonInstitutionRelationType(LegacyRelationType): ...
+class PersonInstitutionRelationType(LegacyRelationType):
+    parent = models.ForeignKey("self", models.DO_NOTHING, blank=True, null=True)
 
 
 class PersonInstitutionRelation(LegacyRelation):
@@ -571,7 +573,8 @@ class PersonInstitutionRelation(LegacyRelation):
     )
 
 
-class PersonPersonRelationType(LegacyRelationType): ...
+class PersonPersonRelationType(LegacyRelationType):
+    parent = models.ForeignKey("self", models.DO_NOTHING, blank=True, null=True)
 
 
 class PersonPersonRelation(LegacyRelation):
