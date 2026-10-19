@@ -1,5 +1,5 @@
 <ul>
 {% for v in value %}
-<li>{{ v.type }}: {{ v.label }}</li>
+<li>{{ v.type }}: {{ v.label }} {% if v.begin or v.end %}({{ v.begin }} - {{ v.end }}){% endif %}</li>
 {% endfor %}
 </ul>

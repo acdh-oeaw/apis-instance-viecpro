@@ -174,6 +174,22 @@ class Person(VersionMixin, E21_Person):
                         },
                     },
                 },
+                "begin": {
+                    "type": "string",
+                    "options": {
+                        "inputAttributes": {
+                            "placeholder": "begin",
+                        },
+                    },
+                },
+                "end": {
+                    "type": "string",
+                    "options": {
+                        "inputAttributes": {
+                            "placeholder": "end",
+                        },
+                    },
+                },
             },
         },
     }
@@ -326,6 +342,22 @@ class Institution(VersionMixin, E74_Group):
                         },
                     },
                 },
+                "begin": {
+                    "type": "string",
+                    "options": {
+                        "inputAttributes": {
+                            "placeholder": "begin",
+                        },
+                    },
+                },
+                "end": {
+                    "type": "string",
+                    "options": {
+                        "inputAttributes": {
+                            "placeholder": "end",
+                        },
+                    },
+                },
             },
         },
     }
@@ -384,6 +416,22 @@ class Event(VersionMixin, Entity):
                     "options": {
                         "inputAttributes": {
                             "required": True,
+                        },
+                    },
+                },
+                "begin": {
+                    "type": "string",
+                    "options": {
+                        "inputAttributes": {
+                            "placeholder": "begin",
+                        },
+                    },
+                },
+                "end": {
+                    "type": "string",
+                    "options": {
+                        "inputAttributes": {
+                            "placeholder": "end",
                         },
                     },
                 },
@@ -447,6 +495,22 @@ class Place(VersionMixin, E53_Place):
                     "options": {
                         "inputAttributes": {
                             "required": True,
+                        },
+                    },
+                },
+                "begin": {
+                    "type": "string",
+                    "options": {
+                        "inputAttributes": {
+                            "placeholder": "begin",
+                        },
+                    },
+                },
+                "end": {
+                    "type": "string",
+                    "options": {
+                        "inputAttributes": {
+                            "placeholder": "end",
                         },
                     },
                 },
