@@ -518,7 +518,7 @@ class LegacyRelationType(VersionMixin, GenericModel):
 
 
 class InstitutionInstitutionRelationType(LegacyRelationType):
-    parent = models.ForeignKey("self", models.DO_NOTHING, blank=True, null=True)
+    parent = models.ForeignKey("self", models.SET_NULL, blank=True, null=True)
 
 
 class InstitutionInstitutionRelation(LegacyRelation):
@@ -558,7 +558,7 @@ class PersonEventRelation(LegacyRelation):
 
 
 class PersonInstitutionRelationType(LegacyRelationType):
-    parent = models.ForeignKey("self", models.DO_NOTHING, blank=True, null=True)
+    parent = models.ForeignKey("self", models.SET_NULL, blank=True, null=True)
 
 
 class PersonInstitutionRelation(LegacyRelation):
@@ -574,7 +574,7 @@ class PersonInstitutionRelation(LegacyRelation):
 
 
 class PersonPersonRelationType(LegacyRelationType):
-    parent = models.ForeignKey("self", models.DO_NOTHING, blank=True, null=True)
+    parent = models.ForeignKey("self", models.SET_NULL, blank=True, null=True)
 
 
 class PersonPersonRelation(LegacyRelation):
