@@ -123,7 +123,7 @@ class Person(VersionMixin, E21_Person):
         "items": {
             "type": "object",
             "properties": {
-                "text-type": {
+                "type": {
                     "type": "string",
                     "pattern": "^.+$",
                     "options": {
