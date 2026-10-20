@@ -17,3 +17,20 @@
 .red:hover {
   background-color: red;
 }
+dialog.ampelnote:popover-open {
+  font-size: 1rem;
+  padding: 1em;
+  border: 2px solid darkgrey;
+  min-width: 30vw;
+
+  display: grid;
+  grid-template-columns: auto;
+
+  button {
+    margin-top: 1em;
+  }
+}
+dialog.ampelnote::backdrop {
+  background-color: grey;
+  opacity: 0.5;
+}

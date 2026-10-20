@@ -11,4 +11,14 @@
           {% if object.status == "red" %}style="background-color: red;"{% endif %}
           hx-get="{% url "ampel" object.content_type.id object.object_id "red" %}"
           hx-target="closest .ampel-container"></span>
+    <button class="btn btn-secondary btn-sm" popovertarget="{{ object.pk }}-note-dialog">Note</button>
+    <dialog id="{{ object.pk }}-note-dialog" class="ampelnote" popover>
+        <textarea class="textarea form-control" type="text" name="note">{% if object.note %}{{ object.note }}{% endif %}</textarea>
+        <button class="btn btn-primary"
+                hx-get="{% url "ampel" object.content_type.id object.object_id object.status %}"
+                hx-include="previous textarea"
+                popovertarget="{{ object.pk }}-note-dialog"
+                popovertargetaction="hide"
+                hx-target="closest .ampel-container">Save</button>
+    </dialog>
 </span>
