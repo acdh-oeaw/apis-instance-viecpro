@@ -109,7 +109,7 @@ class PersonManager(models.Manager):
         )
 
 
-class Person(VersionMixin, E21_Person):
+class Person(E21_Person, VersionMixin):
     """
     Person class, imported from old viecpro instance
     Decided to drop the `status` field
@@ -293,7 +293,7 @@ class InstitutionType(SimpleLabelModel):
     legacy_vocab_id = models.IntegerField(null=True, editable=False)
 
 
-class Institution(VersionMixin, E74_Group):
+class Institution(E74_Group, VersionMixin):
     """
     Institution class, imported from old viecpro instance `ApisEntitiesInstitution`
     `name` will become `label`
@@ -396,7 +396,7 @@ class PlaceType(SimpleLabelModel):
     legacy_vocab_id = models.IntegerField(null=True, editable=False)
 
 
-class Place(VersionMixin, E53_Place):
+class Place(E53_Place, VersionMixin):
     """
     Place class, imported from old viecrpo instance `ApisEntitiesPlace`
     `name` becomes `label`
