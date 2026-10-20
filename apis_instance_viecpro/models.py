@@ -10,6 +10,7 @@ from django.contrib.contenttypes.fields import GenericForeignKey
 from django.contrib.contenttypes.models import ContentType
 from django.db import models, transaction
 from django.template.loader import render_to_string
+from django.utils.translation import gettext_lazy as _
 from django_interval.fields import FuzzyDateParserField
 from django_json_editor_field.fields import JSONEditorField
 
@@ -57,11 +58,15 @@ class Ampel(GenericModel):
 
 
 class Source(GenericModel):
-    orig_filename = models.CharField(max_length=255)
-    indexed = models.IntegerField()
-    pubinfo = models.CharField(max_length=400)
-    author = models.CharField(max_length=255)
-    orig_id = models.PositiveIntegerField(blank=True, null=True)
+    orig_filename = models.CharField(
+        max_length=255, verbose_name=_("original filename")
+    )
+    indexed = models.IntegerField(verbose_name=_("indexed"))
+    pubinfo = models.CharField(max_length=400, verbose_name=_("pubinfo"))
+    author = models.CharField(max_length=255, verbose_name=_("author"))
+    orig_id = models.PositiveIntegerField(
+        blank=True, null=True, verbose_name=_("original ID")
+    )
 
     content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE, null=True)
     object_id = models.PositiveIntegerField(null=True)
@@ -103,17 +108,25 @@ class Person(VersionMixin, E21_Person):
     """
 
     date_of_birth = FuzzyDateParserField(
-        blank=True, null=True, parser=parse_date_wrapper
+        blank=True,
+        null=True,
+        parser=parse_date_wrapper,
+        verbose_name=_("date of birth"),
     )
     date_of_death = FuzzyDateParserField(
-        blank=True, null=True, parser=parse_date_wrapper
+        blank=True,
+        null=True,
+        parser=parse_date_wrapper,
+        verbose_name=_("date of death"),
     )
-    references = models.TextField(blank=True, null=True)
-    notes = models.TextField(blank=True, null=True)
-    published = models.BooleanField(default=False)
+    references = models.TextField(blank=True, null=True, verbose_name=_("references"))
+    notes = models.TextField(blank=True, null=True, verbose_name=_("notes"))
+    published = models.BooleanField(default=False, verbose_name=_("published"))
 
-    title = models.ManyToManyField(Title, blank=True)
-    professions = models.ManyToManyField(Profession, blank=True)
+    title = models.ManyToManyField(Title, blank=True, verbose_name=_("title"))
+    professions = models.ManyToManyField(
+        Profession, blank=True, verbose_name=_("professions")
+    )
 
     objects = PersonManager()
 
@@ -147,12 +160,18 @@ class Person(VersionMixin, E21_Person):
     }
 
     texts = JSONEditorField(
-        schema=texts_schema, options=jsoneditorfield_options, null=True
+        schema=texts_schema,
+        options=jsoneditorfield_options,
+        null=True,
+        verbose_name=_("texts"),
     )
 
     # imported from pointers to labels
     labels = JSONEditorField(
-        schema=labels_schema, options=jsoneditorfield_options, null=True
+        schema=labels_schema,
+        options=jsoneditorfield_options,
+        null=True,
+        verbose_name=_("labels"),
     )
 
     # imported from "data merged from" relation
@@ -162,6 +181,7 @@ class Person(VersionMixin, E21_Person):
         editable=False,
         null=True,
         related_name="merged",
+        verbose_name=_("merged into"),
     )
     # for the django-grouper logic
     grouped_into = models.ForeignKey(
@@ -170,6 +190,7 @@ class Person(VersionMixin, E21_Person):
         null=True,
         blank=True,
         related_name="grouped",
+        verbose_name=_("grouped into"),
     )
 
     # helper attribute, to know what the old entity was
@@ -263,19 +284,32 @@ class Institution(VersionMixin, E74_Group):
     """
 
     institution_type = models.ForeignKey(
-        InstitutionType, on_delete=models.PROTECT, blank=True, null=True
+        InstitutionType,
+        on_delete=models.PROTECT,
+        blank=True,
+        null=True,
+        verbose_name=_("institution type"),
     )
 
-    start = FuzzyDateParserField(null=True, blank=True, parser=parse_date_wrapper)
-    end = FuzzyDateParserField(null=True, blank=True, parser=parse_date_wrapper)
-    status = models.CharField(max_length=100, null=True, blank=True)
-    references = models.TextField(blank=True, null=True)
-    notes = models.TextField(blank=True, null=True)
-    published = models.BooleanField(default=False)
+    start = FuzzyDateParserField(
+        null=True, blank=True, parser=parse_date_wrapper, verbose_name=_("start")
+    )
+    end = FuzzyDateParserField(
+        null=True, blank=True, parser=parse_date_wrapper, verbose_name=_("end")
+    )
+    status = models.CharField(
+        max_length=100, null=True, blank=True, verbose_name=_("status")
+    )
+    references = models.TextField(blank=True, null=True, verbose_name=_("references"))
+    notes = models.TextField(blank=True, null=True, verbose_name=_("notes"))
+    published = models.BooleanField(default=False, verbose_name=_("published"))
 
     # imported from pointers to labels
     labels = JSONEditorField(
-        schema=labels_schema, options=jsoneditorfield_options, null=True
+        schema=labels_schema,
+        options=jsoneditorfield_options,
+        null=True,
+        verbose_name=_("labels"),
     )
 
     # helper attribute, to know what the old entity was
@@ -294,20 +328,33 @@ class Event(VersionMixin, Entity):
     """
 
     event_type = models.ForeignKey(
-        EventType, on_delete=models.PROTECT, null=True, blank=True
+        EventType,
+        on_delete=models.PROTECT,
+        null=True,
+        blank=True,
+        verbose_name=_("event type"),
     )
 
-    name = models.CharField(max_length=255, null=True)
-    start = FuzzyDateParserField(null=True, blank=True, parser=parse_date_wrapper)
-    end = FuzzyDateParserField(null=True, blank=True, parser=parse_date_wrapper)
-    status = models.CharField(max_length=100, null=True, blank=True)
-    references = models.TextField(blank=True, null=True)
-    notes = models.TextField(blank=True, null=True)
-    published = models.BooleanField(default=False)
+    name = models.CharField(max_length=255, null=True, verbose_name=_("name"))
+    start = FuzzyDateParserField(
+        null=True, blank=True, parser=parse_date_wrapper, verbose_name=_("start")
+    )
+    end = FuzzyDateParserField(
+        null=True, blank=True, parser=parse_date_wrapper, verbose_name=_("end")
+    )
+    status = models.CharField(
+        max_length=100, null=True, blank=True, verbose_name=_("status")
+    )
+    references = models.TextField(blank=True, null=True, verbose_name=_("references"))
+    notes = models.TextField(blank=True, null=True, verbose_name=_("notes"))
+    published = models.BooleanField(default=False, verbose_name=_("published"))
 
     # imported from pointers to labels
     labels = JSONEditorField(
-        schema=labels_schema, options=jsoneditorfield_options, null=True
+        schema=labels_schema,
+        options=jsoneditorfield_options,
+        null=True,
+        verbose_name=_("labels"),
     )
 
     # helper attribute, to know what the old entity was
@@ -330,18 +377,31 @@ class Place(VersionMixin, E53_Place):
     """
 
     place_type = models.ForeignKey(
-        PlaceType, on_delete=models.PROTECT, null=True, blank=True
+        PlaceType,
+        on_delete=models.PROTECT,
+        null=True,
+        blank=True,
+        verbose_name=_("place type"),
     )
-    start = FuzzyDateParserField(null=True, blank=True, parser=parse_date_wrapper)
-    end = FuzzyDateParserField(null=True, blank=True, parser=parse_date_wrapper)
-    status = models.CharField(max_length=100, null=True, blank=True)
-    references = models.TextField(blank=True, null=True)
-    notes = models.TextField(blank=True, null=True)
-    published = models.BooleanField(default=False)
+    start = FuzzyDateParserField(
+        null=True, blank=True, parser=parse_date_wrapper, verbose_name=_("start")
+    )
+    end = FuzzyDateParserField(
+        null=True, blank=True, parser=parse_date_wrapper, verbose_name=_("end")
+    )
+    status = models.CharField(
+        max_length=100, null=True, blank=True, verbose_name=_("status")
+    )
+    references = models.TextField(blank=True, null=True, verbose_name=_("references"))
+    notes = models.TextField(blank=True, null=True, verbose_name=_("notes"))
+    published = models.BooleanField(default=False, verbose_name=_("published"))
 
     # imported from pointers to labels
     labels = JSONEditorField(
-        schema=labels_schema, options=jsoneditorfield_options, null=True
+        schema=labels_schema,
+        options=jsoneditorfield_options,
+        null=True,
+        verbose_name=_("labels"),
     )
 
     # helper attribute, to know what the old entity was
@@ -380,14 +440,24 @@ class LegacyRelation(VersionMixin, Relation):
         abstract = True
 
     start = FuzzyDateParserField(
-        max_length=255, blank=True, null=True, parser=parse_date_wrapper
+        max_length=255,
+        blank=True,
+        null=True,
+        parser=parse_date_wrapper,
+        verbose_name=_("start"),
     )
     end = FuzzyDateParserField(
-        max_length=255, blank=True, null=True, parser=parse_date_wrapper
+        max_length=255,
+        blank=True,
+        null=True,
+        parser=parse_date_wrapper,
+        verbose_name=_("end"),
     )
-    status = models.CharField(max_length=100, blank=True, null=True, editable=False)
-    references = models.TextField(blank=True, null=True)
-    notes = models.TextField(blank=True, null=True)
+    status = models.CharField(
+        max_length=100, blank=True, null=True, editable=False, verbose_name=_("status")
+    )
+    references = models.TextField(blank=True, null=True, verbose_name=_("references"))
+    notes = models.TextField(blank=True, null=True, verbose_name=_("notes"))
 
 
 class LegacyRelationType(VersionMixin, GenericModel):
@@ -403,7 +473,13 @@ class LegacyRelationType(VersionMixin, GenericModel):
 
 
 class InstitutionInstitutionRelationType(LegacyRelationType):
-    parent = models.ForeignKey("self", models.SET_NULL, blank=True, null=True)
+    parent = models.ForeignKey(
+        "self",
+        models.SET_NULL,
+        blank=True,
+        null=True,
+        verbose_name=_("parent relation type"),
+    )
 
 
 class InstitutionInstitutionRelation(LegacyRelation):
@@ -412,7 +488,11 @@ class InstitutionInstitutionRelation(LegacyRelation):
     obj_model = Institution
 
     type = models.ForeignKey(
-        InstitutionInstitutionRelationType, models.DO_NOTHING, blank=True, null=True
+        InstitutionInstitutionRelationType,
+        models.DO_NOTHING,
+        blank=True,
+        null=True,
+        verbose_name=_("type"),
     )
 
 
@@ -425,7 +505,11 @@ class InstitutionPlaceRelation(LegacyRelation):
     obj_model = Place
 
     type = models.ForeignKey(
-        InstitutionPlaceRelationType, models.DO_NOTHING, blank=True, null=True
+        InstitutionPlaceRelationType,
+        models.DO_NOTHING,
+        blank=True,
+        null=True,
+        verbose_name=_("type"),
     )
 
 
@@ -438,19 +522,35 @@ class PersonEventRelation(LegacyRelation):
     obj_model = Event
 
     type = models.ForeignKey(
-        PersonEventRelationType, models.DO_NOTHING, blank=True, null=True
+        PersonEventRelationType,
+        models.DO_NOTHING,
+        blank=True,
+        null=True,
+        verbose_name=_("type"),
     )
 
 
 class OverarchingFunctionalTerm(GenericModel):
-    field_of_activity = models.CharField(max_length=400, null=True, blank=True)
-    label = models.CharField(max_length=255, null=True, blank=True)
-    definition = models.TextField(blank=True, null=True)
-    source = models.CharField(max_length=400, null=True, blank=True)
+    field_of_activity = models.CharField(
+        max_length=400, null=True, blank=True, verbose_name=_("field of activity")
+    )
+    label = models.CharField(
+        max_length=255, null=True, blank=True, verbose_name=_("function generic term")
+    )
+    definition = models.TextField(blank=True, null=True, verbose_name=_("definition"))
+    source = models.CharField(
+        max_length=400, null=True, blank=True, verbose_name=_("source")
+    )
 
 
 class PersonInstitutionRelationType(LegacyRelationType):
-    parent = models.ForeignKey("self", models.SET_NULL, blank=True, null=True)
+    parent = models.ForeignKey(
+        "self",
+        models.SET_NULL,
+        blank=True,
+        null=True,
+        verbose_name=_("parent relation type"),
+    )
     synonyms_schema = {
         "title": "Texts",
         "type": "array",
@@ -466,7 +566,10 @@ class PersonInstitutionRelationType(LegacyRelationType):
         },
     }
     synonyms = JSONEditorField(
-        schema=synonyms_schema, options=jsoneditorfield_options, null=True
+        schema=synonyms_schema,
+        options=jsoneditorfield_options,
+        null=True,
+        verbose_name=_("synonyms"),
     )
 
 
@@ -478,12 +581,22 @@ class PersonInstitutionRelation(LegacyRelation):
     obj_model = Institution
 
     type = models.ForeignKey(
-        PersonInstitutionRelationType, models.DO_NOTHING, blank=True, null=True
+        PersonInstitutionRelationType,
+        models.DO_NOTHING,
+        blank=True,
+        null=True,
+        verbose_name=_("type"),
     )
 
 
 class PersonPersonRelationType(LegacyRelationType):
-    parent = models.ForeignKey("self", models.SET_NULL, blank=True, null=True)
+    parent = models.ForeignKey(
+        "self",
+        models.SET_NULL,
+        blank=True,
+        null=True,
+        verbose_name=_("parent relation type"),
+    )
 
 
 class PersonPersonRelation(LegacyRelation):
@@ -492,7 +605,11 @@ class PersonPersonRelation(LegacyRelation):
     obj_model = Person
 
     type = models.ForeignKey(
-        PersonPersonRelationType, models.SET_NULL, blank=True, null=True
+        PersonPersonRelationType,
+        models.SET_NULL,
+        blank=True,
+        null=True,
+        verbose_name=_("type"),
     )
 
 
@@ -505,7 +622,11 @@ class PersonPlaceRelation(LegacyRelation):
     obj_model = Place
 
     type = models.ForeignKey(
-        PersonPlaceRelationType, models.SET_NULL, blank=True, null=True
+        PersonPlaceRelationType,
+        models.SET_NULL,
+        blank=True,
+        null=True,
+        verbose_name=_("type"),
     )
 
 
@@ -518,7 +639,11 @@ class PlaceEventRelation(LegacyRelation):
     obj_model = Event
 
     type = models.ForeignKey(
-        PlaceEventRelationType, models.SET_NULL, blank=True, null=True
+        PlaceEventRelationType,
+        models.SET_NULL,
+        blank=True,
+        null=True,
+        verbose_name=_("type"),
     )
 
 
@@ -531,7 +656,11 @@ class PlacePlaceRelation(LegacyRelation):
     obj_model = Place
 
     type = models.ForeignKey(
-        PlacePlaceRelationType, models.DO_NOTHING, blank=True, null=True
+        PlacePlaceRelationType,
+        models.DO_NOTHING,
+        blank=True,
+        null=True,
+        verbose_name=_("type"),
     )
 
 

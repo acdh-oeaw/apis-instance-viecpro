@@ -1,0 +1,138 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-20 10:17+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+#: apis_instance_viecpro/models.py
+msgid "original filename"
+msgstr ""
+
+#: apis_instance_viecpro/models.py
+msgid "indexed"
+msgstr "indiziert"
+
+#: apis_instance_viecpro/models.py
+msgid "pubinfo"
+msgstr "pubinfo"
+
+#: apis_instance_viecpro/models.py
+msgid "author"
+msgstr "Autor"
+
+#: apis_instance_viecpro/models.py
+msgid "original ID"
+msgstr "originale ID"
+
+#: apis_instance_viecpro/models.py
+msgid "date of birth"
+msgstr "Geburtsdatum"
+
+#: apis_instance_viecpro/models.py
+msgid "date of death"
+msgstr "Todesdatum"
+
+#: apis_instance_viecpro/models.py
+msgid "references"
+msgstr "Referenzen"
+
+#: apis_instance_viecpro/models.py
+msgid "notes"
+msgstr "Notizen"
+
+#: apis_instance_viecpro/models.py
+msgid "published"
+msgstr "publiziert"
+
+#: apis_instance_viecpro/models.py
+msgid "title"
+msgstr "Titel"
+
+#: apis_instance_viecpro/models.py
+msgid "professions"
+msgstr "Berufe"
+
+#: apis_instance_viecpro/models.py
+msgid "texts"
+msgstr "Texte"
+
+#: apis_instance_viecpro/models.py
+msgid "labels"
+msgstr "Labels"
+
+#: apis_instance_viecpro/models.py
+msgid "merged into"
+msgstr "zusammengeführt in"
+
+#: apis_instance_viecpro/models.py
+msgid "grouped into"
+msgstr "gruppiert in"
+
+#: apis_instance_viecpro/models.py
+msgid "institution type"
+msgstr "Institutionstype"
+
+#: apis_instance_viecpro/models.py
+msgid "start"
+msgstr "Start"
+
+#: apis_instance_viecpro/models.py
+msgid "end"
+msgstr "Ende"
+
+#: apis_instance_viecpro/models.py
+msgid "status"
+msgstr "Status"
+
+#: apis_instance_viecpro/models.py
+msgid "event type"
+msgstr "Ereignistyp"
+
+#: apis_instance_viecpro/models.py
+msgid "name"
+msgstr "Name"
+
+#: apis_instance_viecpro/models.py
+msgid "place type"
+msgstr "Ortstyp"
+
+#: apis_instance_viecpro/models.py
+msgid "parent relation type"
+msgstr "übergeordneter Relationstyp"
+
+#: apis_instance_viecpro/models.py
+msgid "type"
+msgstr "Typ"
+
+#: apis_instance_viecpro/models.py
+msgid "field of activity"
+msgstr "Tätigkeitsfeld"
+
+#: apis_instance_viecpro/models.py
+msgid "function generic term"
+msgstr "Funktionsoberbegriff"
+
+#: apis_instance_viecpro/models.py
+msgid "definition"
+msgstr "Definition"
+
+#: apis_instance_viecpro/models.py
+msgid "source"
+msgstr "Quelle"
+
+#: apis_instance_viecpro/models.py
+msgid "synonyms"
+msgstr "Synonyme"
