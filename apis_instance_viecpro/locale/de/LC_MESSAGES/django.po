@@ -116,7 +116,7 @@ msgstr "gruppiert in"
 
 #: apis_instance_viecpro/models.py
 msgid "institution type"
-msgstr "Institutionstype"
+msgstr "Institutionstyp"
 
 #: apis_instance_viecpro/models.py
 msgid "institution types"
