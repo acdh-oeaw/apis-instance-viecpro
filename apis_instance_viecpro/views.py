@@ -14,6 +14,8 @@ class AmpelView(TemplateView):
         pk = self.kwargs.get("pk")
         ampel, _ = Ampel.objects.get_or_create(content_type=content_type, object_id=pk)
         ampel.status = self.kwargs.get("status")
+        if note := self.request.GET.get("note"):
+            ampel.note = note
         ampel.save()
         ctx["object"] = ampel
         return ctx
