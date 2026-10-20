@@ -24,7 +24,7 @@ msgstr "Status"
 
 #: apis_instance_viecpro/models.py
 msgid "Statuses"
-msgstr "Status"
+msgstr "Statusse"
 
 #: apis_instance_viecpro/models.py
 msgid "Source"
@@ -32,7 +32,7 @@ msgstr "Quelle"
 
 #: apis_instance_viecpro/models.py
 msgid "Sources"
-msgstr "Quelle"
+msgstr "Quellen"
 
 #: apis_instance_viecpro/models.py
 msgid "original filename"
@@ -140,7 +140,7 @@ msgstr "Ereignistyp"
 
 #: apis_instance_viecpro/models.py
 msgid "event types"
-msgstr "Ereignistypn"
+msgstr "Ereignistypen"
 
 #: apis_instance_viecpro/models.py
 msgid "event"
