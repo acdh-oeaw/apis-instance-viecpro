@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-20 10:17+0000\n"
+"POT-Creation-Date: 2026-10-20 11:16+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,9 +17,26 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: apis_instance_viecpro/models.py
+msgid "Status"
+msgstr "Status"
+
+#: apis_instance_viecpro/models.py
+msgid "Statuses"
+msgstr "Status"
+
+#: apis_instance_viecpro/models.py
+msgid "Source"
+msgstr "Quelle"
+
+#: apis_instance_viecpro/models.py
+msgid "Sources"
+msgstr "Quelle"
+
 #: apis_instance_viecpro/models.py
 msgid "original filename"
-msgstr ""
+msgstr "Originaler Dateiname"
 
 #: apis_instance_viecpro/models.py
 msgid "indexed"
@@ -36,6 +53,22 @@ msgstr "Autor"
 #: apis_instance_viecpro/models.py
 msgid "original ID"
 msgstr "originale ID"
+
+#: apis_instance_viecpro/models.py
+msgid "Profession"
+msgstr "Beruf"
+
+#: apis_instance_viecpro/models.py
+msgid "Professions"
+msgstr "Berufe"
+
+#: apis_instance_viecpro/models.py
+msgid "Title"
+msgstr "Titel"
+
+#: apis_instance_viecpro/models.py
+msgid "Titles"
+msgstr "Titel"
 
 #: apis_instance_viecpro/models.py
 msgid "date of birth"
@@ -86,6 +119,10 @@ msgid "institution type"
 msgstr "Institutionstype"
 
 #: apis_instance_viecpro/models.py
+msgid "institution types"
+msgstr "Institutionstypen"
+
+#: apis_instance_viecpro/models.py
 msgid "start"
 msgstr "Start"
 
@@ -102,6 +139,18 @@ msgid "event type"
 msgstr "Ereignistyp"
 
 #: apis_instance_viecpro/models.py
+msgid "event types"
+msgstr "Ereignistypn"
+
+#: apis_instance_viecpro/models.py
+msgid "event"
+msgstr "Ereignis"
+
+#: apis_instance_viecpro/models.py
+msgid "events"
+msgstr "Ereignisse"
+
+#: apis_instance_viecpro/models.py
 msgid "name"
 msgstr "Name"
 
@@ -110,12 +159,72 @@ msgid "place type"
 msgstr "Ortstyp"
 
 #: apis_instance_viecpro/models.py
+msgid "place types"
+msgstr "Ortstypen"
+
+#: apis_instance_viecpro/models.py
+msgid "institution instition relation type"
+msgstr "Institution Institution Relationstyp"
+
+#: apis_instance_viecpro/models.py
+msgid "institution institution relation types"
+msgstr "Institution Institution Relationstypen"
+
+#: apis_instance_viecpro/models.py
 msgid "parent relation type"
 msgstr "übergeordneter Relationstyp"
 
 #: apis_instance_viecpro/models.py
+msgid "institution institution relation"
+msgstr "Institution Institution Relation"
+
+#: apis_instance_viecpro/models.py
+msgid "institution institution relations"
+msgstr "Institution Institution Relationen"
+
+#: apis_instance_viecpro/models.py
 msgid "type"
 msgstr "Typ"
+
+#: apis_instance_viecpro/models.py
+msgid "institution place relation type"
+msgstr "Institution Ort Relationstyp"
+
+#: apis_instance_viecpro/models.py
+msgid "institution place relation types"
+msgstr "Institution Ort Relationstypen"
+
+#: apis_instance_viecpro/models.py
+msgid "institution place relation"
+msgstr "Institution Ort Relation"
+
+#: apis_instance_viecpro/models.py
+msgid "institution place relations"
+msgstr "Institution Ort Relationen"
+
+#: apis_instance_viecpro/models.py
+msgid "person event relation type"
+msgstr "Person Ereignis Relationstyp"
+
+#: apis_instance_viecpro/models.py
+msgid "person event relation types"
+msgstr "Person Ereignis Relationstypen"
+
+#: apis_instance_viecpro/models.py
+msgid "person event relation"
+msgstr "Person Ereignis Relation"
+
+#: apis_instance_viecpro/models.py
+msgid "person even relations"
+msgstr "Person Ereignis Relationen"
+
+#: apis_instance_viecpro/models.py
+msgid "overarching functional term"
+msgstr "Funktionsoberbegriff"
+
+#: apis_instance_viecpro/models.py
+msgid "overarching functional terms"
+msgstr "Funktionsoberbegriffe"
 
 #: apis_instance_viecpro/models.py
 msgid "field of activity"
@@ -134,5 +243,77 @@ msgid "source"
 msgstr "Quelle"
 
 #: apis_instance_viecpro/models.py
+msgid "person institution relation type"
+msgstr "Person Institution Relationstyp"
+
+#: apis_instance_viecpro/models.py
+msgid "person institution relation types"
+msgstr "Person Institution Relationstypen"
+
+#: apis_instance_viecpro/models.py
 msgid "synonyms"
 msgstr "Synonyme"
+
+#: apis_instance_viecpro/models.py
+msgid "person person relation type"
+msgstr "Person Person Relationstyp"
+
+#: apis_instance_viecpro/models.py
+msgid "person person relation types"
+msgstr "Person Person Relationstypen"
+
+#: apis_instance_viecpro/models.py
+msgid "person person relation"
+msgstr "Person Person Relationstyp"
+
+#: apis_instance_viecpro/models.py
+msgid "person person relations"
+msgstr "Person Person Relationstypen"
+
+#: apis_instance_viecpro/models.py
+msgid "person place relation type"
+msgstr "Person Ort Relationstyp"
+
+#: apis_instance_viecpro/models.py
+msgid "person place relation types"
+msgstr "Person Ort Relationstypen"
+
+#: apis_instance_viecpro/models.py
+msgid "person place relation"
+msgstr "Person Ort Relation"
+
+#: apis_instance_viecpro/models.py
+msgid "person place relations"
+msgstr "Person Ort Relationen"
+
+#: apis_instance_viecpro/models.py
+msgid "place event relation type"
+msgstr "Person Ort Relationstypen"
+
+#: apis_instance_viecpro/models.py
+msgid "place event relation types"
+msgstr "Ort Ereignis Relationstypen"
+
+#: apis_instance_viecpro/models.py
+msgid "place event relation"
+msgstr "Ort Ereignis Relation"
+
+#: apis_instance_viecpro/models.py
+msgid "place event relations"
+msgstr "Ort Ereignis Relationen"
+
+#: apis_instance_viecpro/models.py
+msgid "place place relation type"
+msgstr "Ort Ort Relationstyp"
+
+#: apis_instance_viecpro/models.py
+msgid "place place relation types"
+msgstr "Ort Ort Relationstypen"
+
+#: apis_instance_viecpro/models.py
+msgid "place place relation"
+msgstr "Ort Ort Relation"
+
+#: apis_instance_viecpro/models.py
+msgid "place place relations"
+msgstr "Ort Ort Relationen"

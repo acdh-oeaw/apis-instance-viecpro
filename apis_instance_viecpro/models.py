@@ -47,6 +47,8 @@ class Ampel(GenericModel):
     content_object = GenericForeignKey("content_type", "object_id")
 
     class Meta:
+        verbose_name = _("Status")
+        verbose_name_plural = _("Statuses")
         constraints = [
             models.UniqueConstraint(
                 fields=("content_type", "object_id"), name="unique_content_object"
@@ -58,6 +60,10 @@ class Ampel(GenericModel):
 
 
 class Source(GenericModel):
+    class Meta:
+        verbose_name = _("Source")
+        verbose_name_plural = _("Sources")
+
     orig_filename = models.CharField(
         max_length=255, verbose_name=_("original filename")
     )
@@ -78,10 +84,16 @@ class Source(GenericModel):
         )
 
 
-class Profession(SimpleLabelModel): ...
+class Profession(SimpleLabelModel):
+    class Meta:
+        verbose_name = _("Profession")
+        verbose_name_plural = _("Professions")
 
 
-class Title(SimpleLabelModel): ...
+class Title(SimpleLabelModel):
+    class Meta:
+        verbose_name = _("Title")
+        verbose_name_plural = _("Titles")
 
 
 class PersonManager(models.Manager):
@@ -274,6 +286,10 @@ class Person(VersionMixin, E21_Person):
 
 
 class InstitutionType(SimpleLabelModel):
+    class Meta:
+        verbose_name = _("institution type")
+        verbose_name_plural = _("institution types")
+
     legacy_vocab_id = models.IntegerField(null=True, editable=False)
 
 
@@ -317,6 +333,10 @@ class Institution(VersionMixin, E74_Group):
 
 
 class EventType(SimpleLabelModel):
+    class Meta:
+        verbose_name = _("event type")
+        verbose_name_plural = _("event types")
+
     legacy_vocab_id = models.IntegerField(null=True, editable=False)
 
 
@@ -326,6 +346,10 @@ class Event(VersionMixin, Entity):
     The `type` attribute will be sourced from `ApisVocabulariesbaseclass.name`
     it should be a choicefield in the form afterwards
     """
+
+    class Meta:
+        verbose_name = _("event")
+        verbose_name_plural = _("events")
 
     event_type = models.ForeignKey(
         EventType,
@@ -365,6 +389,10 @@ class Event(VersionMixin, Entity):
 
 
 class PlaceType(SimpleLabelModel):
+    class Meta:
+        verbose_name = _("place type")
+        verbose_name_plural = _("place types")
+
     legacy_vocab_id = models.IntegerField(null=True, editable=False)
 
 
@@ -473,6 +501,10 @@ class LegacyRelationType(VersionMixin, GenericModel):
 
 
 class InstitutionInstitutionRelationType(LegacyRelationType):
+    class Meta:
+        verbose_name = _("institution instition relation type")
+        verbose_name_plural = _("institution institution relation types")
+
     parent = models.ForeignKey(
         "self",
         models.SET_NULL,
@@ -484,6 +516,10 @@ class InstitutionInstitutionRelationType(LegacyRelationType):
 
 class InstitutionInstitutionRelation(LegacyRelation):
     # 1684 ApisRelationsInstitutioninstitution
+    class Meta:
+        verbose_name = _("institution institution relation")
+        verbose_name_plural = _("institution institution relations")
+
     subj_model = Institution
     obj_model = Institution
 
@@ -496,11 +532,18 @@ class InstitutionInstitutionRelation(LegacyRelation):
     )
 
 
-class InstitutionPlaceRelationType(LegacyRelationType): ...
+class InstitutionPlaceRelationType(LegacyRelationType):
+    class Meta:
+        verbose_name = _("institution place relation type")
+        verbose_name_plural = _("institution place relation types")
 
 
 class InstitutionPlaceRelation(LegacyRelation):
     # 903 ApisRelationsInstitutionplace
+    class Meta:
+        verbose_name = _("institution place relation")
+        verbose_name_plural = _("institution place relations")
+
     subj_model = Institution
     obj_model = Place
 
@@ -513,11 +556,18 @@ class InstitutionPlaceRelation(LegacyRelation):
     )
 
 
-class PersonEventRelationType(LegacyRelationType): ...
+class PersonEventRelationType(LegacyRelationType):
+    class Meta:
+        verbose_name = _("person event relation type")
+        verbose_name_plural = _("person event relation types")
 
 
 class PersonEventRelation(LegacyRelation):
     # 80 ApisRelationsPersonevent
+    class Meta:
+        verbose_name = _("person event relation")
+        verbose_name_plural = _("person even relations")
+
     subj_model = Person
     obj_model = Event
 
@@ -531,6 +581,10 @@ class PersonEventRelation(LegacyRelation):
 
 
 class OverarchingFunctionalTerm(GenericModel):
+    class Meta:
+        verbose_name = _("overarching functional term")
+        verbose_name_plural = _("overarching functional terms")
+
     field_of_activity = models.CharField(
         max_length=400, null=True, blank=True, verbose_name=_("field of activity")
     )
@@ -544,6 +598,10 @@ class OverarchingFunctionalTerm(GenericModel):
 
 
 class PersonInstitutionRelationType(LegacyRelationType):
+    class Meta:
+        verbose_name = _("person institution relation type")
+        verbose_name_plural = _("person institution relation types")
+
     parent = models.ForeignKey(
         "self",
         models.SET_NULL,
@@ -577,6 +635,10 @@ class PersonInstitutionRelation(LegacyRelation):
     # 80088 ApisRelationsPersoninstitution
     # ApisRelationsPersoninstitution.relation_type = Funktionstyp
     # ApisVocabulariesVocabsbaseclass.description = FunctionType.comment (falls das ausefüllt ist)
+    class Meta:
+        verbose_name = _("person institution relation type")
+        verbose_name_plural = _("person institution relation types")
+
     subj_model = Person
     obj_model = Institution
 
@@ -590,6 +652,10 @@ class PersonInstitutionRelation(LegacyRelation):
 
 
 class PersonPersonRelationType(LegacyRelationType):
+    class Meta:
+        verbose_name = _("person person relation type")
+        verbose_name_plural = _("person person relation types")
+
     parent = models.ForeignKey(
         "self",
         models.SET_NULL,
@@ -601,6 +667,10 @@ class PersonPersonRelationType(LegacyRelationType):
 
 class PersonPersonRelation(LegacyRelation):
     # 21811 ApisRelationsPersonperson
+    class Meta:
+        verbose_name = _("person person relation")
+        verbose_name_plural = _("person person relations")
+
     subj_model = Person
     obj_model = Person
 
@@ -613,11 +683,18 @@ class PersonPersonRelation(LegacyRelation):
     )
 
 
-class PersonPlaceRelationType(LegacyRelationType): ...
+class PersonPlaceRelationType(LegacyRelationType):
+    class Meta:
+        verbose_name = _("person place relation type")
+        verbose_name_plural = _("person place relation types")
 
 
 class PersonPlaceRelation(LegacyRelation):
     # 8150 ApisRelationsPersonplace
+    class Meta:
+        verbose_name = _("person place relation")
+        verbose_name_plural = _("person place relations")
+
     subj_model = Person
     obj_model = Place
 
@@ -630,11 +707,18 @@ class PersonPlaceRelation(LegacyRelation):
     )
 
 
-class PlaceEventRelationType(LegacyRelationType): ...
+class PlaceEventRelationType(LegacyRelationType):
+    class Meta:
+        verbose_name = _("place event relation type")
+        verbose_name_plural = _("place event relation types")
 
 
 class PlaceEventRelation(LegacyRelation):
     # 14 ApisRelationsPlaceevent
+    class Meta:
+        verbose_name = _("place event relation")
+        verbose_name_plural = _("place event relations")
+
     subj_model = Place
     obj_model = Event
 
@@ -647,11 +731,18 @@ class PlaceEventRelation(LegacyRelation):
     )
 
 
-class PlacePlaceRelationType(LegacyRelationType): ...
+class PlacePlaceRelationType(LegacyRelationType):
+    class Meta:
+        verbose_name = _("place place relation type")
+        verbose_name_plural = _("place place relation types")
 
 
 class PlacePlaceRelation(LegacyRelation):
     # 3045 ApisRelationsPlaceplace
+    class Meta:
+        verbose_name = _("place place relation")
+        verbose_name_plural = _("place place relations")
+
     subj_model = Place
     obj_model = Place
 
