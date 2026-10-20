@@ -621,8 +621,32 @@ class PersonEventRelation(LegacyRelation):
     )
 
 
+class OverarchingFunctionalTerm(GenericModel):
+    field_of_activity = models.CharField(max_length=400, null=True, blank=True)
+    label = models.CharField(max_length=255, null=True, blank=True)
+    definition = models.TextField(blank=True, null=True)
+    source = models.CharField(max_length=400, null=True, blank=True)
+
+
 class PersonInstitutionRelationType(LegacyRelationType):
     parent = models.ForeignKey("self", models.SET_NULL, blank=True, null=True)
+    synonyms_schema = {
+        "title": "Texts",
+        "type": "array",
+        "format": "table",
+        "items": {
+            "type": "string",
+            "options": {
+                "inputAttributes": {
+                    "required": True,
+                    "placeholder": "Synonym",
+                },
+            },
+        },
+    }
+    synonyms = JSONEditorField(
+        schema=synonyms_schema, options=jsoneditorfield_options, null=True
+    )
 
 
 class PersonInstitutionRelation(LegacyRelation):
