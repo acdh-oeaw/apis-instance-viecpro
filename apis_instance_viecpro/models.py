@@ -14,6 +14,7 @@ from django_interval.fields import FuzzyDateParserField
 from django_json_editor_field.fields import JSONEditorField
 
 from apis_instance_viecpro.DateParser import parse_date_wrapper
+from apis_instance_viecpro.jsonschemata import labels_schema
 
 # The default options for JSONEditorFields, which are used
 # in multiple models
@@ -149,51 +150,6 @@ class Person(VersionMixin, E21_Person):
         schema=texts_schema, options=jsoneditorfield_options, null=True
     )
 
-    labels_schema = {
-        "title": "Labels",
-        "type": "array",
-        "format": "table",
-        "items": {
-            "type": "object",
-            "properties": {
-                "type": {
-                    "type": "string",
-                    "pattern": "^.+$",
-                    "options": {
-                        "inputAttributes": {
-                            "required": True,
-                        },
-                    },
-                },
-                "label": {
-                    "type": "string",
-                    "pattern": "^.+$",
-                    "options": {
-                        "inputAttributes": {
-                            "required": True,
-                        },
-                    },
-                },
-                "begin": {
-                    "type": "string",
-                    "options": {
-                        "inputAttributes": {
-                            "placeholder": "begin",
-                        },
-                    },
-                },
-                "end": {
-                    "type": "string",
-                    "options": {
-                        "inputAttributes": {
-                            "placeholder": "end",
-                        },
-                    },
-                },
-            },
-        },
-    }
-
     # imported from pointers to labels
     labels = JSONEditorField(
         schema=labels_schema, options=jsoneditorfield_options, null=True
@@ -317,51 +273,6 @@ class Institution(VersionMixin, E74_Group):
     notes = models.TextField(blank=True, null=True)
     published = models.BooleanField(default=False)
 
-    labels_schema = {
-        "title": "Labels",
-        "type": "array",
-        "format": "table",
-        "items": {
-            "type": "object",
-            "properties": {
-                "type": {
-                    "type": "string",
-                    "pattern": "^.+$",
-                    "options": {
-                        "inputAttributes": {
-                            "required": True,
-                        },
-                    },
-                },
-                "label": {
-                    "type": "string",
-                    "pattern": "^.+$",
-                    "options": {
-                        "inputAttributes": {
-                            "required": True,
-                        },
-                    },
-                },
-                "begin": {
-                    "type": "string",
-                    "options": {
-                        "inputAttributes": {
-                            "placeholder": "begin",
-                        },
-                    },
-                },
-                "end": {
-                    "type": "string",
-                    "options": {
-                        "inputAttributes": {
-                            "placeholder": "end",
-                        },
-                    },
-                },
-            },
-        },
-    }
-
     # imported from pointers to labels
     labels = JSONEditorField(
         schema=labels_schema, options=jsoneditorfield_options, null=True
@@ -393,51 +304,6 @@ class Event(VersionMixin, Entity):
     references = models.TextField(blank=True, null=True)
     notes = models.TextField(blank=True, null=True)
     published = models.BooleanField(default=False)
-
-    labels_schema = {
-        "title": "Labels",
-        "type": "array",
-        "format": "table",
-        "items": {
-            "type": "object",
-            "properties": {
-                "type": {
-                    "type": "string",
-                    "pattern": "^.+$",
-                    "options": {
-                        "inputAttributes": {
-                            "required": True,
-                        },
-                    },
-                },
-                "label": {
-                    "type": "string",
-                    "pattern": "^.+$",
-                    "options": {
-                        "inputAttributes": {
-                            "required": True,
-                        },
-                    },
-                },
-                "begin": {
-                    "type": "string",
-                    "options": {
-                        "inputAttributes": {
-                            "placeholder": "begin",
-                        },
-                    },
-                },
-                "end": {
-                    "type": "string",
-                    "options": {
-                        "inputAttributes": {
-                            "placeholder": "end",
-                        },
-                    },
-                },
-            },
-        },
-    }
 
     # imported from pointers to labels
     labels = JSONEditorField(
@@ -472,51 +338,6 @@ class Place(VersionMixin, E53_Place):
     references = models.TextField(blank=True, null=True)
     notes = models.TextField(blank=True, null=True)
     published = models.BooleanField(default=False)
-
-    labels_schema = {
-        "title": "Labels",
-        "type": "array",
-        "format": "table",
-        "items": {
-            "type": "object",
-            "properties": {
-                "type": {
-                    "type": "string",
-                    "pattern": "^.+$",
-                    "options": {
-                        "inputAttributes": {
-                            "required": True,
-                        },
-                    },
-                },
-                "label": {
-                    "type": "string",
-                    "pattern": "^.+$",
-                    "options": {
-                        "inputAttributes": {
-                            "required": True,
-                        },
-                    },
-                },
-                "begin": {
-                    "type": "string",
-                    "options": {
-                        "inputAttributes": {
-                            "placeholder": "begin",
-                        },
-                    },
-                },
-                "end": {
-                    "type": "string",
-                    "options": {
-                        "inputAttributes": {
-                            "placeholder": "end",
-                        },
-                    },
-                },
-            },
-        },
-    }
 
     # imported from pointers to labels
     labels = JSONEditorField(
