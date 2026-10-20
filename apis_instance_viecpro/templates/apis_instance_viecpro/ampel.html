@@ -1,4 +1,7 @@
 <style>
+.ampels {
+  white-space: nowrap;
+}
 .ampel {
   border: 2px solid black;
   display: inline-block;
@@ -16,15 +19,17 @@
   background-color: red;
 }
 </style>
-<span class="ampel green"
-      {% if object.status == "green" %}style="background-color: green;"{% endif %}
-      hx-get="{% url "ampel" object.content_type.id object.object_id "green" %}"
-      hx-target="closest .ampel-container"></span>
-<span class="ampel yellow"
-      {% if object.status == "yellow" %}style="background-color: yellow;"{% endif %}
-      hx-get="{% url "ampel" object.content_type.id object.object_id "yellow" %}"
-      hx-target="closest .ampel-container"></span>
-<span class="ampel red"
-      {% if object.status == "red" %}style="background-color: red;"{% endif %}
-      hx-get="{% url "ampel" object.content_type.id object.object_id "red" %}"
-      hx-target="closest .ampel-container"></span>
+<span class="ampels">
+    <span class="ampel green"
+          {% if object.status == "green" %}style="background-color: green;"{% endif %}
+          hx-get="{% url "ampel" object.content_type.id object.object_id "green" %}"
+          hx-target="closest .ampel-container"></span>
+    <span class="ampel yellow"
+          {% if object.status == "yellow" %}style="background-color: yellow;"{% endif %}
+          hx-get="{% url "ampel" object.content_type.id object.object_id "yellow" %}"
+          hx-target="closest .ampel-container"></span>
+    <span class="ampel red"
+          {% if object.status == "red" %}style="background-color: red;"{% endif %}
+          hx-get="{% url "ampel" object.content_type.id object.object_id "red" %}"
+          hx-target="closest .ampel-container"></span>
+</span>
