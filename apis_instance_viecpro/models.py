@@ -629,6 +629,13 @@ class PersonInstitutionRelationType(LegacyRelationType):
         null=True,
         verbose_name=_("synonyms"),
     )
+    overarching_functional_term = models.ForeignKey(
+        OverarchingFunctionalTerm,
+        models.SET_NULL,
+        blank=True,
+        null=True,
+        verbose_name=_("overarching functional term"),
+    )
 
 
 class PersonInstitutionRelation(LegacyRelation):
