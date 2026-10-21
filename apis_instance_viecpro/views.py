@@ -1,10 +1,11 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.contenttypes.models import ContentType
 from django.views.generic.base import TemplateView
 
 from apis_instance_viecpro.models import Ampel
 
 
-class AmpelView(TemplateView):
+class AmpelView(TemplateView, LoginRequiredMixin):
     template_name = "apis_instance_viecpro/ampel.html"
 
     def get_context_data(self, **kwargs):
