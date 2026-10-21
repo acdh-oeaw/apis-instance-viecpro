@@ -20,3 +20,9 @@ class EntityRelationsTable(RelationsListTable):
 
 class PersonTable(GenericTable):
     ampel_value = tables.TemplateColumn(template_name="columns/ampel.html")
+
+
+class AmpelTable(GenericTable):
+    ampel = tables.TemplateColumn(
+        template_code="{% include 'ampel_icon.html' with color=record.status %}"
+    )
