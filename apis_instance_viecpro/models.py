@@ -596,6 +596,9 @@ class OverarchingFunctionalTerm(GenericModel):
         max_length=400, null=True, blank=True, verbose_name=_("source")
     )
 
+    def __str__(self):
+        return f"{self.label} (FOB)"
+
 
 class PersonInstitutionRelationType(LegacyRelationType):
     class Meta:
