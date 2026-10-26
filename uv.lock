@@ -1,5 +1,5 @@
 version = 1
-revision = 3
+revision = 5
 requires-python = ">=3.13"
 resolution-markers = [
     "python_full_version >= '3.14'",
@@ -101,7 +101,7 @@ wheels = [
 
 [[package]]
 name = "apis-core-rdf"
-version = "0.71.1"
+version = "0.72.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "acdh-arche-assets" },
@@ -123,9 +123,9 @@ dependencies = [
     { name = "rdflib" },
     { name = "tablib" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/cf/42/faf71caa8bd74269919036c74daa5ee2ce06bf48663531c283a03c22173e/apis_core_rdf-0.71.1.tar.gz", hash = "sha256:e35e22141376a1e2779b455d0c75d9ce6ed6215527e8df2a0cbb44c2f214bdc5", size = 356025, upload-time = "2026-10-16T07:16:14.765Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/2c/f0/0f408a3a3a087076ce0c52049d45b2710ce2078e4d09c893794b86dddc13/apis_core_rdf-0.72.0.tar.gz", hash = "sha256:29e58fd45bf12b4e85165374ac4263aaab83bef54acbbba274f8246d7085251a", size = 362137, upload-time = "2026-10-21T06:52:35.712Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/60/65/82d3e913eb1c5ff81a89f9a41771a49e60cfc53a07fc497fde5a0ec06506/apis_core_rdf-0.71.1-py3-none-any.whl", hash = "sha256:ab63b83181c02fcfe0155fed3d05d97f78d03eaddc4becadafbf1f854dbeeea6", size = 319109, upload-time = "2026-10-16T07:16:12.827Z" },
+    { url = "https://files.pythonhosted.org/packages/82/3d/68d86dfa2fb99eaeb6e2c9619989c56bc83738fd33f1e354dfe3d36e5768/apis_core_rdf-0.72.0-py3-none-any.whl", hash = "sha256:821b816cc95630e050b0d0f0a5c72ee79d8454fc0cdff6699c17a68f51b8d50d", size = 320942, upload-time = "2026-10-21T06:52:34.169Z" },
 ]
 
 [[package]]
@@ -153,7 +153,7 @@ dev = [
 requires-dist = [
     { name = "apis-acdhch-default-settings", specifier = "==2.23.0" },
     { name = "apis-bibsonomy", specifier = ">=0.15.2" },
-    { name = "apis-core-rdf", specifier = "==0.71.1" },
+    { name = "apis-core-rdf", specifier = "==0.72.0" },
     { name = "django-auditlog", specifier = "==3.4.1" },
     { name = "django-grouper", specifier = ">=0.5.2" },
     { name = "django-interval", specifier = "==0.5.4" },
