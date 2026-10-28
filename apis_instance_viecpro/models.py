@@ -596,6 +596,9 @@ class OverarchingFunctionalTerm(SimpleLabelModel):
         max_length=400, null=True, blank=True, verbose_name=_("source")
     )
 
+    def __str__(self):
+        return super() + " (FOB)"
+
 
 class PersonInstitutionRelationType(LegacyRelationType):
     class Meta:
