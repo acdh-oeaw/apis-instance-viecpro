@@ -580,7 +580,7 @@ class PersonEventRelation(LegacyRelation):
     )
 
 
-class OverarchingFunctionalTerm(GenericModel):
+class OverarchingFunctionalTerm(SimpleLabelModel):
     class Meta:
         verbose_name = _("overarching functional term")
         verbose_name_plural = _("overarching functional terms")
