@@ -1,0 +1,7 @@
+{% extends "relations/relation_form.html" %}
+{% load bibsonomy_templatetags %}
+
+{% block genericmodel-single.body %}
+{% link_to_reference_on obj=object modal=True %}
+{{ block.super }}
+{% endblock genericmodel-single.body %}
