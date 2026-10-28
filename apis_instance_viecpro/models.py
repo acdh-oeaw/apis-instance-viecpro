@@ -643,8 +643,8 @@ class PersonInstitutionRelation(LegacyRelation):
     # ApisRelationsPersoninstitution.relation_type = Funktionstyp
     # ApisVocabulariesVocabsbaseclass.description = FunctionType.comment (falls das ausefüllt ist)
     class Meta:
-        verbose_name = _("person institution relation type")
-        verbose_name_plural = _("person institution relation types")
+        verbose_name = _("person institution relation")
+        verbose_name_plural = _("person institution relations")
 
     subj_model = Person
     obj_model = Institution
