@@ -1,5 +1,5 @@
 version = 1
-revision = 3
+revision = 5
 requires-python = ">=3.13"
 resolution-markers = [
     "python_full_version >= '3.14'",
@@ -41,7 +41,7 @@ wheels = [
 
 [[package]]
 name = "apis-acdhch-default-settings"
-version = "2.23.0"
+version = "2.24.1"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "apis-acdhch-django-auditlog" },
@@ -66,9 +66,9 @@ dependencies = [
     { name = "requests" },
     { name = "whitenoise" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/18/ba/ab5d32f1050bca395ca273060751b646dd5be7cfdcb6d103257e8c7c7376/apis_acdhch_default_settings-2.23.0.tar.gz", hash = "sha256:f2322f31d0978cf16e58cefbdad57bf18be4f068799d704488ec94cf021597db", size = 16840, upload-time = "2026-09-08T08:20:32.846Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/4f/e7/f4352a520efa66979acb49c271de7e6b79e9ff3dcaddff14d05fdfdbebaf/apis_acdhch_default_settings-2.24.1.tar.gz", hash = "sha256:d2f7bbb99617d30bd4721bfbe125e6b6cae89523e7f8a366aaf7ec36c6e7e5bb", size = 16959, upload-time = "2026-10-14T09:00:46.685Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/03/5b/2d1a25fc85eae3ea426c1299088f3209890e6706a5b90c19c97f0f2a2f55/apis_acdhch_default_settings-2.23.0-py3-none-any.whl", hash = "sha256:8356f4680e2cf4cafe525d5d9df0f3074bcbe2d24f1587229a2c4031fe62b040", size = 12307, upload-time = "2026-09-08T08:20:31.733Z" },
+    { url = "https://files.pythonhosted.org/packages/44/25/b2a74af661a6ef508341ccc3e0c6e8033e4dd5b761f8e6cce4b85e1b7a26/apis_acdhch_default_settings-2.24.1-py3-none-any.whl", hash = "sha256:3cf9c65f229cec5e8ecc689fabead6ba1af6615c8eb67b1d95268ecf57885049", size = 12314, upload-time = "2026-10-14T09:00:45.385Z" },
 ]
 
 [[package]]
@@ -151,7 +151,7 @@ dev = [
 
 [package.metadata]
 requires-dist = [
-    { name = "apis-acdhch-default-settings", specifier = "==2.23.0" },
+    { name = "apis-acdhch-default-settings", specifier = "==2.24.1" },
     { name = "apis-bibsonomy", specifier = ">=0.15.2" },
     { name = "apis-core-rdf", specifier = "==0.72.1" },
     { name = "django-auditlog", specifier = "==3.4.1" },
