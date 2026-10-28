@@ -8,14 +8,12 @@ class ReferenceColumn(CustomTemplateColumn):
 
 
 class EntityRelationsTable(RelationsListTable):
-    reference = ReferenceColumn()
     start = tables.Column(order_by="start_date_sort")
     end = tables.Column(order_by="end_date_sort")
-    notes = tables.Column()
     ampel = tables.TemplateColumn(template_name="columns/relation_ampel.html")
 
     class Meta(RelationsListTable.Meta):
-        sequence = RelationsListTable.Meta.sequence + ("reference",)
+        sequence = RelationsListTable.Meta.sequence
 
 
 class PersonTable(GenericTable):
