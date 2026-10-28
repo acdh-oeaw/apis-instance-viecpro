@@ -597,7 +597,7 @@ class OverarchingFunctionalTerm(SimpleLabelModel):
     )
 
     def __str__(self):
-        return super() + " (FOB)"
+        return super().__str__() + " (FOB)"
 
 
 class PersonInstitutionRelationType(LegacyRelationType):
