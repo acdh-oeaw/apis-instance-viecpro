@@ -13,6 +13,7 @@ from django.template.loader import render_to_string
 from django.utils.translation import gettext_lazy as _
 from django_interval.fields import FuzzyDateParserField
 from django_json_editor_field.fields import JSONEditorField
+from model_utils.managers import InheritanceManager
 
 from apis_instance_viecpro.DateParser import parse_date_wrapper
 from apis_instance_viecpro.jsonschemata import labels_schema
@@ -96,7 +97,7 @@ class Title(SimpleLabelModel):
         verbose_name_plural = _("Titles")
 
 
-class ViecrproModelManager(models.Manager):
+class ViecrproModelManager(InheritanceManager):
     def get_queryset(self):
         qs = super().get_queryset()
         content_type = ContentType.objects.get_for_model(qs.model)
