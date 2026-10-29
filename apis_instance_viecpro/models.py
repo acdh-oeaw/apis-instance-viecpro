@@ -96,7 +96,7 @@ class Title(SimpleLabelModel):
         verbose_name_plural = _("Titles")
 
 
-class PersonManager(models.Manager):
+class ViecrproModelManager(models.Manager):
     def get_queryset(self):
         qs = super().get_queryset()
         content_type = ContentType.objects.get_for_model(qs.model)
@@ -140,7 +140,7 @@ class Person(E21_Person, VersionMixin):
         Profession, blank=True, verbose_name=_("professions")
     )
 
-    objects = PersonManager()
+    objects = ViecrproModelManager()
 
     texts_schema = {
         "title": "Texts",
@@ -333,6 +333,7 @@ class Institution(E74_Group, VersionMixin):
 
     # helper attribute, to know what the old entity was
     legacy_metainfo_id = models.IntegerField(editable=False, null=True)
+    objects = ViecrproModelManager()
 
 
 class EventType(SimpleLabelModel):
@@ -386,6 +387,7 @@ class Event(VersionMixin, Entity):
 
     # helper attribute, to know what the old entity was
     legacy_metainfo_id = models.IntegerField(editable=False, null=True)
+    objects = ViecrproModelManager()
 
     def __str__(self):
         return self.name
@@ -437,6 +439,7 @@ class Place(E53_Place, VersionMixin):
 
     # helper attribute, to know what the old entity was
     legacy_metainfo_id = models.IntegerField(editable=False, null=True)
+    objects = ViecrproModelManager()
 
 
 class Payment(VersionMixin, Entity): ...
@@ -489,6 +492,7 @@ class LegacyRelation(VersionMixin, Relation):
     )
     references = models.TextField(blank=True, null=True, verbose_name=_("references"))
     notes = models.TextField(blank=True, null=True, verbose_name=_("notes"))
+    objects = ViecrproModelManager()
 
 
 class LegacyRelationType(VersionMixin, GenericModel):
