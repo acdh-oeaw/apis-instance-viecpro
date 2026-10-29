@@ -160,10 +160,13 @@ class Person(E21_Person, VersionMixin):
                 },
                 "text": {
                     "type": "string",
+                    "format": "textarea",
                     "pattern": "^.+$",
                     "options": {
                         "inputAttributes": {
                             "required": True,
+                            "rows": 1,
+                            "class": "grow form-control",
                         },
                     },
                 },
