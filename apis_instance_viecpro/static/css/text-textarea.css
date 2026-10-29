@@ -1,0 +1,7 @@
+textarea.grow:focus {
+  field-sizing: content;
+  min-height: 30ch;
+  text-wrap: pretty;
+  position: absolute;
+  z-index: 99;
+}
