@@ -3,7 +3,9 @@ import os
 
 from apis_acdhch_default_settings.settings import *
 
-INSTALLED_APPS[INSTALLED_APPS.index("apis_ontology")] = "apis_instance_viecpro"
+if "apis_ontology" in INSTALLED_APPS:
+    INSTALLED_APPS.remove("apis_ontology")
+INSTALLED_APPS.insert(0, "apis_instance_viecpro")
 INSTALLED_APPS += ["simple_history"]
 INSTALLED_APPS += ["django.contrib.postgres"]
 INSTALLED_APPS += ["django_interval"]
