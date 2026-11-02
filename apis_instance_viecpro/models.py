@@ -56,6 +56,9 @@ class Ampel(GenericModel):
             )
         ]
 
+    class Config(GenericModel.Config):
+        index_for_search = False
+
     def __str__(self):
         return f"{self.content_object} -> {self.status}"
 
