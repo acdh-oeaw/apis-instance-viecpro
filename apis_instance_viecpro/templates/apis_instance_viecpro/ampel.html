@@ -10,7 +10,7 @@
             hx-get="{% url "ampel" object.content_type.id object.object_id "yellow" %}"
             hx-target="closest .ampel-container"></span>
       <span class="ampel red"
-            {% if object.status == "red" %}style="background-color: red;"{% endif %}
+            {% if object.status == "red" or not object.status %}style="background-color: red;"{% endif %}
             hx-get="{% url "ampel" object.content_type.id object.object_id "red" %}"
             hx-target="closest .ampel-container"></span>
       <button class="btn btn-secondary btn-sm" popovertarget="{{ object.pk }}-note-dialog">Note</button>
