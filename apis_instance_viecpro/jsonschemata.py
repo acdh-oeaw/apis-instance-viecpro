@@ -64,10 +64,13 @@ labels_schema = {
             },
             "label": {
                 "type": "string",
+                "format": "textarea",
                 "pattern": "^.+$",
                 "options": {
                     "inputAttributes": {
                         "required": True,
+                        "rows": 1,
+                        "class": "grow form-control",
                     },
                 },
             },
