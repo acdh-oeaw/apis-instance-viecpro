@@ -88,18 +88,6 @@ class Source(GenericModel):
         )
 
 
-class Profession(SimpleLabelModel):
-    class Meta:
-        verbose_name = _("Profession")
-        verbose_name_plural = _("Professions")
-
-
-class Title(SimpleLabelModel):
-    class Meta:
-        verbose_name = _("Title")
-        verbose_name_plural = _("Titles")
-
-
 class ViecproModelManager(InheritanceManager):
     def get_queryset(self):
         qs = super().get_queryset()
@@ -138,11 +126,6 @@ class Person(E21_Person, VersionMixin):
     references = models.TextField(blank=True, null=True, verbose_name=_("references"))
     notes = models.TextField(blank=True, null=True, verbose_name=_("notes"))
     published = models.BooleanField(default=False, verbose_name=_("published"))
-
-    title = models.ManyToManyField(Title, blank=True, verbose_name=_("title"))
-    professions = models.ManyToManyField(
-        Profession, blank=True, verbose_name=_("professions")
-    )
 
     objects = ViecproModelManager()
 
@@ -195,10 +178,6 @@ class Person(E21_Person, VersionMixin):
         new_pers.id = None
         new_pers._state.adding = True
         new_pers.save()
-        for m2m in ["professions", "title"]:
-            m2m_objcts = getattr(self, m2m).all()
-            if m2m_objcts.count() > 0:
-                getattr(new_pers, m2m).add(*m2m_objcts)
         col, _ = SkosCollection.objects.get_or_create(name="Vorfinale Einträge")
         col.add(new_pers)
 
@@ -217,10 +196,6 @@ class Person(E21_Person, VersionMixin):
             if person.texts:
                 new_pers.texts += person.texts
                 save = True
-            for profession in person.professions.all():
-                new_pers.professions.add(profession)
-            for title in person.title.all():
-                new_pers.title.add(title)
         if save:
             new_pers.save()
 
