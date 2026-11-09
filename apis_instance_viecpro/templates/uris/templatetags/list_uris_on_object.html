@@ -1,0 +1,6 @@
+{# we override the template to show the whole uri instead of only the short label #}
+{% extends "uris/templatetags/list_uris_on_object.html" %}
+
+{% block uri_label %}
+{{ uri }}
+{% endblock %}
