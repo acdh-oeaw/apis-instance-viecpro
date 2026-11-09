@@ -16,7 +16,7 @@ from django_json_editor_field.fields import JSONEditorField
 from model_utils.managers import InheritanceManager
 
 from apis_instance_viecpro.DateParser import parse_date_wrapper
-from apis_instance_viecpro.jsonschemata import labels_schema
+from apis_instance_viecpro.jsonschemata import labels_schema, texts_schema
 
 # The default options for JSONEditorFields, which are used
 # in multiple models
@@ -145,38 +145,6 @@ class Person(E21_Person, VersionMixin):
     )
 
     objects = ViecproModelManager()
-
-    texts_schema = {
-        "title": "Texts",
-        "type": "array",
-        "format": "table",
-        "items": {
-            "type": "object",
-            "properties": {
-                "type": {
-                    "type": "string",
-                    "pattern": "^.+$",
-                    "options": {
-                        "inputAttributes": {
-                            "required": True,
-                        },
-                    },
-                },
-                "text": {
-                    "type": "string",
-                    "format": "textarea",
-                    "pattern": "^.+$",
-                    "options": {
-                        "inputAttributes": {
-                            "required": True,
-                            "rows": 1,
-                            "class": "grow form-control",
-                        },
-                    },
-                },
-            },
-        },
-    }
 
     texts = JSONEditorField(
         schema=texts_schema,
