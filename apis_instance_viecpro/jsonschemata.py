@@ -90,3 +90,35 @@ labels_schema = {
         },
     },
 }
+
+texts_schema = {
+    "title": "Texts",
+    "type": "array",
+    "format": "table",
+    "items": {
+        "type": "object",
+        "properties": {
+            "type": {
+                "type": "string",
+                "pattern": "^.+$",
+                "options": {
+                    "inputAttributes": {
+                        "required": True,
+                    },
+                },
+            },
+            "text": {
+                "type": "string",
+                "format": "textarea",
+                "pattern": "^.+$",
+                "options": {
+                    "inputAttributes": {
+                        "required": True,
+                        "rows": 1,
+                        "class": "grow form-control",
+                    },
+                },
+            },
+        },
+    },
+}
