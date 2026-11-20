@@ -1,5 +1,5 @@
 <ul>
-{% for v in value %}
+{% for v in value|dictsort:"type" %}
 <li>{{ v.type }}: {{ v.text }}</li>
 {% endfor %}
 </ul>
