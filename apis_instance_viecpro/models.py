@@ -129,19 +129,20 @@ class Person(E21_Person, VersionMixin):
 
     objects = ViecproModelManager()
 
-    texts = JSONEditorField(
-        schema=texts_schema,
-        options=jsoneditorfield_options,
-        null=True,
-        verbose_name=_("texts"),
-    )
-
     # imported from pointers to labels
+    # should be displayed above the texts, see #212
     labels = JSONEditorField(
         schema=labels_schema,
         options=jsoneditorfield_options,
         null=True,
         verbose_name=_("labels"),
+    )
+
+    texts = JSONEditorField(
+        schema=texts_schema,
+        options=jsoneditorfield_options,
+        null=True,
+        verbose_name=_("texts"),
     )
 
     # imported from "data merged from" relation
