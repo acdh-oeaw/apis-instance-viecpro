@@ -10,6 +10,7 @@ from apis_core.uris.models import Uri
 from django.contrib.contenttypes.fields import GenericForeignKey
 from django.contrib.contenttypes.models import ContentType
 from django.db import models, transaction
+from django.forms.models import model_to_dict
 from django.template.loader import render_to_string
 from django.utils.translation import gettext_lazy as _
 from django_interval.fields import FuzzyDateParserField
@@ -102,6 +103,14 @@ class ViecproModelManager(InheritanceManager):
         )
 
 
+def clean_dict(data: dict) -> dict:
+    """Replace empty strings in a dict with None values"""
+    for k, v in data.items():
+        if v == "":
+            data[k] = None
+    return data
+
+
 class Person(E21_Person, VersionMixin):
     """
     Person class, imported from old viecpro instance
@@ -192,32 +201,45 @@ class Person(E21_Person, VersionMixin):
                     setattr(new_pers, field, orig_value + add_value)
                     save = True
         for person in others:
-            if person.labels:
-                new_pers.labels += person.labels
-                save = True
-            if person.texts:
-                new_pers.texts += person.texts
-                save = True
+            for label in getattr(person, "labels", []):
+                if label not in new_pers.labels:
+                    new_pers.labels.append(label)
+                    save = True
+            for text in getattr(person, "texts", []):
+                if text not in new_pers.texts:
+                    new_pers.texts.append(text)
+                    save = True
         if save:
             new_pers.save()
 
         pers_ids = [pers.id for pers in others + [self]]
+
         subj_relations = Relation.objects.filter(
             subj_content_type=self.get_self_content_type, subj_object_id__in=pers_ids
         ).select_subclasses()
+        relations_dicts = []
         for rel in subj_relations:
             rel.pk = rel.id = None
             rel.subj_object_id = new_pers.pk
-            rel._state.adding = True
-            rel.save()
+            reld = model_to_dict(rel)
+            reld = clean_dict(reld)
+            if reld not in relations_dicts:
+                relations_dicts.append(reld)
+                rel._state.adding = True
+                rel.save()
+
         obj_relations = Relation.objects.filter(
             obj_content_type=self.get_self_content_type, obj_object_id__in=pers_ids
         ).select_subclasses()
         for rel in obj_relations:
             rel.pk = rel.id = None
             rel.obj_object_id = new_pers.pk
-            rel._state.adding = True
-            rel.save()
+            reld = model_to_dict(rel)
+            reld = clean_dict(reld)
+            if reld not in relations_dicts:
+                relations_dicts.append(reld)
+                rel._state.adding = True
+                rel.save()
 
         for ref in Reference.objects.filter(
             content_type=self.get_self_content_type, object_id__in=pers_ids
