@@ -4,5 +4,6 @@
 {{ block.super }}
 
 <a class="btn" href="{% url "grouper" %}?{{ request.GET.urlencode }}&group_fields=surname&group_fields=forename&group_content_type=apis_instance_viecpro.person">Duplicates</a>
+<a class="btn" href="{% url "group" %}?group_content_type=apis_instance_viecpro.person">Manually create group</a>
 
 {% endblock filter-card-footer %}
