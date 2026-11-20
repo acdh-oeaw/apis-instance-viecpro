@@ -155,7 +155,7 @@ requires-dist = [
     { name = "apis-bibsonomy", specifier = ">=0.15.2" },
     { name = "apis-core-rdf", specifier = "==0.74.0" },
     { name = "django-auditlog", specifier = "==3.4.1" },
-    { name = "django-grouper", specifier = ">=0.5.2" },
+    { name = "django-grouper", specifier = ">=0.5.3" },
     { name = "django-interval", specifier = "==0.5.4" },
     { name = "django-json-editor-field", specifier = ">=0.4.2" },
     { name = "mysqlclient", specifier = ">=2.2.8" },
@@ -407,15 +407,15 @@ wheels = [
 
 [[package]]
 name = "django-grouper"
-version = "0.5.2"
+version = "0.5.3"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "django" },
     { name = "scikit-learn" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/39/e2/5c0cf054f9bd3cc398bd6aecf23eb8ffb191513d387a07622078a14239a8/django_grouper-0.5.2.tar.gz", hash = "sha256:1943ecb82db96cdcd9d1268175351adcba65d6dbd56b53e2d327e64d5dbb2669", size = 9118, upload-time = "2026-09-22T11:31:49.501Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/ab/25/573412980651878261557e69ce6421bc4f383dd40804f0ab498ea78558f7/django_grouper-0.5.3.tar.gz", hash = "sha256:8d541bd63523fb040eae054e61640e7e3a8e329941096b02a3201cce660fa62a", size = 9279, upload-time = "2026-11-20T12:06:48.189Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/b0/a9/8eff9e303770ac800514495f78108895c0515e88ed66b09fccd870c77626/django_grouper-0.5.2-py2.py3-none-any.whl", hash = "sha256:fe4d4f3571f1222ca5df31b4325a23cfe9c5081b5ce43931ed98683373bc5976", size = 8470, upload-time = "2026-09-22T11:31:48.212Z" },
+    { url = "https://files.pythonhosted.org/packages/1b/11/f2716c855c6f5980eb41126c4974f2987406bda9da335836876d35e8b051/django_grouper-0.5.3-py2.py3-none-any.whl", hash = "sha256:662c7ad526f621cf7ffdf2b21a6a03fac3a0aa687c0b5d6399a3753683c62065", size = 8472, upload-time = "2026-11-20T12:06:47.202Z" },
 ]
 
 [[package]]
