@@ -6,6 +6,7 @@ from apis_core.entities.abc import E21_Person, E53_Place, E74_Group, Entity
 from apis_core.generic.abc import GenericModel, SimpleLabelModel
 from apis_core.history.models import VersionMixin
 from apis_core.relations.models import Relation
+from apis_core.uris.models import Uri
 from django.contrib.contenttypes.fields import GenericForeignKey
 from django.contrib.contenttypes.models import ContentType
 from django.db import models, transaction
@@ -225,6 +226,12 @@ class Person(E21_Person, VersionMixin):
             ref._state.adding = True
             ref.object_id = new_pers.pk
             ref.save()
+
+        for uri in Uri.objects.filter(
+            content_type=self.get_self_content_type, object_id__in=pers_ids
+        ):
+            uri.object_id = new_pers.pk
+            uri.save()
 
         for person in others + [self]:
             person.grouped_into = new_pers
