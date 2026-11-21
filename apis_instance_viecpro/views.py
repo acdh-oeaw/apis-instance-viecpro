@@ -6,7 +6,7 @@ from apis_instance_viecpro.models import Ampel
 
 
 class AmpelView(TemplateView, LoginRequiredMixin):
-    template_name = "apis_instance_viecpro/ampel.html"
+    template_name = "apis_instance_viecpro/templatetags/ampel.html"
 
     def get_context_data(self, **kwargs):
         ctx = super().get_context_data(**kwargs)
