@@ -1,6 +1,2 @@
-<span style="background-color: {{ record.ampel_value|default:"red" }};
-            border: 2px solid black;
-            display: inline-block;
-            width: 20px;
-            height: 20px;
-            border-radius: 30px"></span>
+{% load django_tlp %}
+{% get_tlpstatus_for_object record %}

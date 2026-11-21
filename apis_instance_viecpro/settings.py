@@ -12,6 +12,7 @@ INSTALLED_APPS += ["django_interval"]
 INSTALLED_APPS += ["apis_bibsonomy"]
 INSTALLED_APPS += ["django_json_editor_field"]
 INSTALLED_APPS += ["django_grouper"]
+INSTALLED_APPS += ["django_tlp"]
 
 ROOT_URLCONF = "apis_instance_viecpro.urls"
 

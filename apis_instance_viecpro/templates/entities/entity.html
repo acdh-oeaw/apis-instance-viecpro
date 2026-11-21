@@ -1,8 +1,9 @@
 {% extends "entities/entity.html" %}
 {% load bibsonomy_templatetags %}
 {% load apis_instance_viecpro %}
+{% load django_tlp %}
 
 {% block object-actions %}
 {% link_to_reference_on obj=object modal=True %}
-{% get_ampel_for_object object %}
+{% get_tlpchoices_form object %}
 {% endblock object-actions %}
