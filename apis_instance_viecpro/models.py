@@ -105,6 +105,8 @@ class ViecproModelManager(InheritanceManager):
 
 def clean_dict(data: dict) -> dict:
     """Replace empty strings in a dict with None values"""
+    data.pop("relation_ptr", None)
+    data.pop("id", None)
     for k, v in data.items():
         if v == "":
             data[k] = None
@@ -218,29 +220,47 @@ class Person(E21_Person, VersionMixin):
         subj_relations = Relation.objects.filter(
             subj_content_type=self.get_self_content_type, subj_object_id__in=pers_ids
         ).select_subclasses()
-        relations_dicts = []
+        relations_dicts = {}
         for rel in subj_relations:
-            rel.pk = rel.id = None
             rel.subj_object_id = new_pers.pk
             reld = model_to_dict(rel)
             reld = clean_dict(reld)
-            if reld not in relations_dicts:
-                relations_dicts.append(reld)
-                rel._state.adding = True
+            reld["content_type"] = ContentType.objects.get_for_model(rel)
+            if reld not in relations_dicts.values():
+                relations_dicts[rel.id] = reld
                 rel.save()
+                continue
+            # move references from relations that have not been moved
+            # and let them point to the moved relation that has the
+            # same attributes
+            for key, value in relations_dicts.items():
+                if value == reld:
+                    Reference.objects.filter(
+                        content_type=reld["content_type"], object_id=rel.id
+                    ).update(object_id=key)
+                    rel.delete()
 
         obj_relations = Relation.objects.filter(
             obj_content_type=self.get_self_content_type, obj_object_id__in=pers_ids
         ).select_subclasses()
         for rel in obj_relations:
-            rel.pk = rel.id = None
             rel.obj_object_id = new_pers.pk
             reld = model_to_dict(rel)
             reld = clean_dict(reld)
-            if reld not in relations_dicts:
-                relations_dicts.append(reld)
-                rel._state.adding = True
+            reld["content_type"] = ContentType.objects.get_for_model(rel)
+            if reld not in relations_dicts.values():
+                relations_dicts[rel.id] = reld
                 rel.save()
+                continue
+            # move references from relations that have not been moved
+            # and let them point to the moved relation that has the
+            # same attributes
+            for key, value in relations_dicts.items():
+                if value == reld:
+                    Reference.objects.filter(
+                        content_type=reld["content_type"], object_id=rel.id
+                    ).update(object_id=key)
+                    rel.delete()
 
         for ref in Reference.objects.filter(
             content_type=self.get_self_content_type, object_id__in=pers_ids
