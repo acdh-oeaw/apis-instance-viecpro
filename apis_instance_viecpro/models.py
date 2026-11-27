@@ -188,6 +188,7 @@ class Person(E21_Person, VersionMixin):
         new_pers.pk = None
         new_pers.id = None
         new_pers._state.adding = True
+        new_pers.surname += " {vorfinal}"
         new_pers.save()
         col, _ = SkosCollection.objects.get_or_create(name="Vorfinale Einträge")
         col.add(new_pers)
