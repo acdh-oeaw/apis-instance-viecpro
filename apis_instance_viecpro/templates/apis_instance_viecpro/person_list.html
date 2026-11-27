@@ -1,9 +1,32 @@
 {% extends "generic/genericmodel_list.html" %}
-
 {% block filter-card-footer %}
-{{ block.super }}
-
-<a class="btn" href="{% url "grouper" %}?{{ request.GET.urlencode }}&group_fields=surname&group_fields=forename&group_content_type=apis_instance_viecpro.person">Duplicates</a>
-<a class="btn" href="{% url "group" %}?group_content_type=apis_instance_viecpro.person">Manually create group</a>
-
+    {{ block.super }}
+    <hr>
+    <form action="{% url "grouper" %}?{{ request.GET.urlencode }}" method="get">
+        <input type="hidden"
+               name="group_content_type"
+               value="apis_instance_viecpro.person">
+        {% for key, list in request.GET.lists %}
+            {% for item in list %}
+                {% if item %}
+                    <input type="hidden" name="{{ key }}" value="{{ item }}">
+                {% endif %}
+            {% endfor %}
+        {% endfor %}
+        <label for="group_fields" class="fs-6">Select field(s) to group on</label>
+        <select name="group_fields"
+                id="group_fields"
+                multiple
+                class="formselect selectmultiple">
+            <option value="forename">Forename</option>
+            <option value="surname">Surname</option>
+        </select>
+        <input type="submit"
+               class="btn btn-outline-secondary"
+               data="group_fields=surname&group_fields=forename"
+               value="Show groups">
+    </form>
+    <hr>
+    <a class="btn btn-outline-secondary"
+       href="{% url "group" %}?group_content_type=apis_instance_viecpro.person">Manually create merge group</a>
 {% endblock filter-card-footer %}
